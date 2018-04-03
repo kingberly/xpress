@@ -1,0 +1,792 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Xpress41 Admin v103\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-04-20 18:25+0800\n"
+"PO-Revision-Date: 2017-11-28 15:17+0800\n"
+"Last-Translator: \n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.9\n"
+
+#: header.php:54
+msgid "Log in"
+msgstr "登入"
+
+#: header.php:57 html/member/login.php:145 html/member/maintain.php:99
+msgid "Log out"
+msgstr "登出"
+
+#: html/admin/authentication_table.php:97
+#: html/admin/authentication_tree.php:41 html/admin/login_log.php:59
+#: html/license/mac_check.php:153 html/member/account_list.php:144
+#: html/member/account_list.php:164 html/member/account_list.php:174
+#: html/member/online_list.php:135 html/member/online_list.php:146
+#: html/member/user_list.php:110 html/member/user_list.php:121
+msgid "Account"
+msgstr "帳號"
+
+#: html/admin/authentication_table.php:98 html/admin/partner_list.php:89
+#: html/admin/partner_list.php:128 html/license/mac_check.php:154
+#: html/member/account_list.php:164 html/member/account_list.php:176
+#: html/member/login.php:126 html/member/login.php:184
+#: html/member/maintain.php:128 html/member/user_list.php:110
+#: html/member/user_list.php:122
+msgid "Email"
+msgstr "電子信箱"
+
+#: html/admin/authentication_table.php:99
+msgid "Group"
+msgstr "群組"
+
+#: html/admin/authentication_table.php:100
+msgid "Function Check"
+msgstr "功能"
+
+#: html/admin/authentication_table.php:139 html/member/maintain.php:150
+#: html/server/isat_server.php:271 html/webmaster/menu_auth.php:112
+#: html/webmaster/menu_auth.php:135 html/webmaster/oem.php:437
+#: html/webmaster/oem.php:490 html/webmaster/oem.php:529
+#: html/webmaster/oem.php:553 html/webmaster/oem.php:577
+#: html/webmaster/oem.php:601 html/webmaster/oem.php:658
+#: html/webmaster/oem.php:684 html/webmaster/oem.php:710
+#: html/webmaster/oem.php:754
+msgid "Update"
+msgstr "更新"
+
+#: html/admin/authentication_tree.php:39
+msgid "Right"
+msgstr "權限"
+
+#: html/admin/authentication_tree.php:40
+msgid "Authenticated Page"
+msgstr "功能權限表"
+
+#: html/admin/login_log.php:58 html/server/isat_server.php:232
+#: html/server/isat_server.php:238 html/server/license_upload.php:287
+#: html/server/vlc_server.php:276 html/server/web_server.php:90
+msgid "ID"
+msgstr "序號"
+
+#: html/admin/login_log.php:60
+msgid "Time"
+msgstr "時間"
+
+#: html/admin/partner_list.php:83 html/admin/partner_list.php:125
+msgid "Company Name"
+msgstr "公司英文名稱"
+
+#: html/admin/partner_list.php:86 html/admin/partner_list.php:127
+msgid "Contact"
+msgstr "連絡人"
+
+#: html/admin/partner_list.php:92 html/admin/partner_list.php:126
+#: html/webmaster/menu_auth.php:89
+msgid "Role"
+msgstr "角色"
+
+#: html/admin/partner_list.php:98 html/admin/partner_list.php:158
+msgid "God_Admin"
+msgstr "最高管理者"
+
+#: html/admin/partner_list.php:102 html/admin/partner_list.php:169
+msgid "Super_Admin"
+msgstr "超級管理者"
+
+#: html/admin/partner_list.php:129
+msgid "Mobile"
+msgstr "行動電話"
+
+#: html/admin/partner_list.php:131 html/fw/apply.php:99
+#: html/server/isat_server.php:236 html/server/isat_server.php:241
+#: html/server/license_upload.php:293 html/server/vlc_server.php:284
+#: html/server/web_server.php:94
+msgid "Status"
+msgstr "狀態"
+
+#: html/admin/partner_list.php:132 html/fw/apply.php:98
+#: html/fw/model_list.php:126 html/license/delete_device.php:259
+#: html/license/order_isp.php:210 html/license/service.php:255
+#: html/member/delete_user.php:111 html/member/delete_user.php:128
+#: html/server/isat_server.php:187 html/server/isat_server.php:242
+#: html/server/license_upload.php:179
+#: html/server/stream_license_upload.php:196 html/server/vlc_server.php:226
+#: html/server/vlc_server.php:285 html/webmaster/menu_auth.php:90
+#: html/webmaster/menu_edit.php:77 html/webmaster/menu_edit.php:139
+#: html/webmaster/oem.php:404
+msgid "Function"
+msgstr "功能"
+
+#: html/admin/partner_list.php:179
+msgid "Tech_Support"
+msgstr "技術支援"
+
+#: html/admin/partner_list.php:191
+msgid "Not Approved"
+msgstr "未授權"
+
+#: html/admin/partner_list.php:193
+msgid "Approved"
+msgstr "已授權"
+
+#: html/admin/partner_list.php:201
+msgid "Assign"
+msgstr "指定"
+
+#: html/admin/partner_list.php:210 html/member/delete_user.php:116
+msgid "Delete"
+msgstr "刪除設備"
+
+#: html/fw/apply.php:72 html/webmaster/oem.php:402
+msgid "Item"
+msgstr "項目"
+
+#: html/fw/apply.php:73
+msgid "Content"
+msgstr "內容"
+
+#: html/fw/apply.php:76
+msgid "Vendor"
+msgstr "供應商"
+
+#: html/fw/apply.php:80 html/fw/model_list.php:122
+#: html/member/account_list.php:177 html/member/online_list.php:149
+msgid "Model"
+msgstr "型號列表"
+
+#: html/fw/apply.php:84 html/fw/model_list.php:123
+#: html/member/account_list.php:178 html/server/license_upload.php:288
+msgid "Version"
+msgstr "版本資訊"
+
+#: html/fw/apply.php:88
+msgid "Camera Default ID"
+msgstr ""
+
+#: html/fw/apply.php:92
+msgid "Camera Default Password"
+msgstr ""
+
+#: html/fw/apply.php:132
+msgid "update"
+msgstr "更新"
+
+#: html/fw/model_list.php:124
+msgid "ID/PWD"
+msgstr "帳號密碼"
+
+#: html/fw/model_list.php:125 html/fw/model_list.php:176
+msgid "Features"
+msgstr "屬性"
+
+#: html/license/delete_device.php:257 html/license/order_isp.php:208
+#: html/license/service.php:253 html/server/license_upload.php:177
+#: html/server/stream_license_upload.php:194
+msgid "Please Input Qty's"
+msgstr "請輸入數量"
+
+#: html/license/delete_device.php:258 html/license/service.php:254
+msgid "Upload File"
+msgstr "上傳檔案"
+
+#: html/license/delete_device.php:269 html/license/mac_check.php:128
+#: html/license/mac_check.php:145 html/license/order_isp.php:220
+#: html/license/service.php:265 html/server/license_upload.php:189
+#: html/server/stream_license_upload.php:206
+msgid "Submit"
+msgstr "送出"
+
+#: html/license/delete_device.php:277 html/license/service.php:273
+msgid "Download Example"
+msgstr "範例下載"
+
+#: html/license/mac_check.php:120
+msgid "MAC Check"
+msgstr "MAC 查詢"
+
+#: html/license/mac_check.php:121
+msgid "Input the MAC to check"
+msgstr "輸入MAC查詢"
+
+#: html/license/mac_check.php:137
+msgid "License Check"
+msgstr "啟動碼查詢"
+
+#: html/license/mac_check.php:138
+msgid "Input the License to check"
+msgstr "輸入啟動碼查詢"
+
+#: html/license/mac_check.php:152 html/server/isat_server.php:238
+#: html/server/isat_server.php:240
+msgid "License"
+msgstr "啟動碼"
+
+#: html/license/mac_check.php:155 html/server/vlc_server.php:283
+msgid "Info"
+msgstr "資訊"
+
+#: html/license/order_isp.php:202
+msgid "Camera Activation Code Upload"
+msgstr "設備啟動碼上傳"
+
+#: html/license/order_isp.php:209 html/server/license_upload.php:178
+#: html/server/stream_license_upload.php:195
+msgid "Please Select File"
+msgstr "請選擇檔案"
+
+#: html/log/log.php:48 html/server/isat_server.php:239
+msgid "Date"
+msgstr "日期"
+
+#: html/log/log.php:48
+msgid "Event"
+msgstr "事件"
+
+#: html/log/log.php:48 html/webmaster/oem.php:405
+msgid "Note"
+msgstr "說明"
+
+#: html/member/account_list.php:144 html/member/account_list.php:145
+#: html/member/user_list.php:90 html/member/user_list.php:94
+msgid "Total"
+msgstr "總共"
+
+#: html/member/account_list.php:145
+msgid "Device"
+msgstr "設備"
+
+#: html/member/account_list.php:149 html/member/online_list.php:120
+#: html/member/user_list.php:97
+msgid "Pages"
+msgstr "頁數"
+
+#: html/member/account_list.php:149 html/member/online_list.php:120
+#: html/member/user_list.php:97
+msgid "First"
+msgstr "最前"
+
+#: html/member/account_list.php:155 html/member/online_list.php:126
+#: html/member/user_list.php:103
+msgid "Last"
+msgstr "最後"
+
+#: html/member/account_list.php:156 html/member/online_list.php:127
+#: html/member/user_list.php:104
+msgid "Page"
+msgstr "頁"
+
+#: html/member/account_list.php:157 html/member/user_list.php:105
+msgid "Refresh"
+msgstr "更新"
+
+#: html/member/account_list.php:164 html/member/account_list.php:165
+#: html/member/online_list.php:135 html/member/online_list.php:136
+#: html/member/unregister_list.php:86 html/member/user_list.php:110
+msgid "Keyword"
+msgstr "關鍵字"
+
+#: html/member/account_list.php:167 html/member/online_list.php:138
+#: html/member/unregister_list.php:88 html/member/user_list.php:113
+msgid "Search"
+msgstr "搜尋"
+
+#: html/member/account_list.php:179
+msgid "Country"
+msgstr "國家"
+
+#: html/member/account_list.php:180
+msgid "City"
+msgstr "城市"
+
+#: html/member/delete_user.php:107
+msgid "Delete End User"
+msgstr "刪除 使用者帳號"
+
+#: html/member/delete_user.php:110 html/member/delete_user.php:126
+msgid "Email Address"
+msgstr "住址"
+
+#: html/member/delete_user.php:122
+msgid "Add End User"
+msgstr "新增 使用者帳號"
+
+#: html/member/delete_user.php:125 html/server/isat_server.php:235
+#: html/server/vlc_server.php:277 html/server/web_server.php:93
+#: html/webmaster/menu_auth.php:88 html/webmaster/menu_edit.php:71
+#: html/webmaster/menu_edit.php:135
+msgid "Name"
+msgstr "名稱"
+
+#: html/member/delete_user.php:127 html/member/login.php:128
+#: html/member/login.php:188 html/member/maintain.php:133
+msgid "Password"
+msgstr "密碼"
+
+#: html/member/delete_user.php:135 html/webmaster/menu_edit.php:111
+msgid "Add"
+msgstr "新增"
+
+#: html/member/login.php:106
+msgid "Please Log-in here"
+msgstr "請登入"
+
+#: html/member/login.php:130
+msgid "Send"
+msgstr "送出"
+
+#: html/member/login.php:175
+msgid "Sign up to be partner?"
+msgstr "註冊為伙伴"
+
+#: html/member/login.php:179 html/member/maintain.php:123
+msgid "Company English name"
+msgstr "公司英文名稱"
+
+#: html/member/login.php:192 html/member/maintain.php:137
+msgid "Contact person"
+msgstr "連絡人"
+
+#: html/member/login.php:196
+msgid "Address of the company"
+msgstr "公司地址"
+
+#: html/member/login.php:200
+msgid "Contact phone number"
+msgstr "連絡電話"
+
+#: html/member/login.php:206
+msgid "Check number"
+msgstr "驗證碼"
+
+#: html/member/login.php:207
+msgid "Please enter 4 digits number"
+msgstr "請輸入四碼驗證碼"
+
+#: html/member/login.php:211
+msgid "Join"
+msgstr "加入"
+
+#: html/member/maintain.php:71
+msgid "Partner Already"
+msgstr "已經是合作伙伴"
+
+#: html/member/maintain.php:118
+msgid "Maintain Your Partner Info."
+msgstr "維護您的帳號資訊"
+
+#: html/member/maintain.php:119
+msgid "Please modified below infomation with us now!"
+msgstr "請更新您的資訊"
+
+#: html/member/maintain.php:141
+msgid "Address"
+msgstr "住址"
+
+#: html/member/maintain.php:145
+msgid "Mobile no."
+msgstr "行動電話"
+
+#: html/member/online_list.php:111
+msgid "User Account List"
+msgstr "使用者列表"
+
+#: html/member/online_list.php:116
+msgid "Online Device"
+msgstr "線上設備"
+
+#: html/member/online_list.php:136
+msgid "MAC"
+msgstr "MAC"
+
+#: html/member/online_list.php:150
+msgid "FW Ver"
+msgstr "軔體版號"
+
+#: html/member/online_list.php:151 html/member/unregister_list.php:102
+msgid "Online"
+msgstr "線上設備"
+
+#: html/member/user_list.php:90 html/member/user_list.php:94
+msgid "Registered"
+msgstr "未綁定設備列表"
+
+#: html/member/user_list.php:123
+msgid "From"
+msgstr "來源"
+
+#: html/server/isat_server.php:180 html/server/vlc_server.php:219
+msgid "Redundancy Policy"
+msgstr "備援方案"
+
+#: html/server/isat_server.php:185 html/server/vlc_server.php:224
+msgid "Target From List"
+msgstr "目標來源列表"
+
+#: html/server/isat_server.php:186 html/server/vlc_server.php:225
+msgid "Target To List"
+msgstr "目標對象列表"
+
+#: html/server/isat_server.php:220 html/server/vlc_server.php:258
+msgid "switch"
+msgstr "切換"
+
+#: html/server/isat_server.php:234 html/server/partner_server.php:71
+#: html/server/vlc_server.php:278 html/server/web_server.php:92
+msgid "LAN"
+msgstr "內網"
+
+#: html/server/isat_server.php:239 html/server/license_upload.php:289
+msgid "Start"
+msgstr "開始"
+
+#: html/server/isat_server.php:240
+msgid "Key"
+msgstr "金鑰"
+
+#: html/server/isat_server.php:334 html/server/isat_server.php:362
+msgid "Bind"
+msgstr "綁定"
+
+#: html/server/isat_server.php:336 html/server/isat_server.php:346
+msgid "Unbind"
+msgstr "未綁定"
+
+#: html/server/license_upload.php:171
+msgid "Tunnel Server License Upload"
+msgstr "穿牆伺服器啟動碼上傳"
+
+#: html/server/license_upload.php:290 html/server/license_upload.php:305
+msgid "Expired"
+msgstr "過期"
+
+#: html/server/license_upload.php:291
+msgid "License Key"
+msgstr "啟動碼"
+
+#: html/server/license_upload.php:292
+msgid "Valid"
+msgstr "有效"
+
+#: html/server/license_upload.php:303
+msgid "Un-used"
+msgstr "未使用"
+
+#: html/server/license_upload.php:311
+msgid "Remove"
+msgstr "移除"
+
+#: html/server/license_upload.php:325 html/server/vlc_server.php:279
+msgid "Used"
+msgstr "使用中"
+
+#: html/server/stream_license_upload.php:188
+msgid "Upload Stream Server License"
+msgstr "串流伺服器啟動碼上傳"
+
+#: html/server/vlc_server.php:281
+msgid "Recycle days"
+msgstr "保留天數"
+
+#: html/server/vlc_server.php:282
+msgid "Resouces"
+msgstr "資源"
+
+#: html/server/vlc_server.php:363
+msgid "Enabled"
+msgstr "啟動"
+
+#: html/server/vlc_server.php:365 html/server/vlc_server.php:375
+msgid "Disable"
+msgstr "未啟動"
+
+#: html/server/vlc_server.php:384
+msgid "Enable"
+msgstr "啟動"
+
+#: html/webmaster/menu_auth.php:88
+msgid "Menu"
+msgstr "目錄"
+
+#: html/webmaster/menu_auth.php:89 html/webmaster/menu_edit.php:76
+msgid "Authentication"
+msgstr "權限"
+
+#: html/webmaster/menu_edit.php:72
+msgid "Level"
+msgstr "階層"
+
+#: html/webmaster/menu_edit.php:73 html/webmaster/menu_edit.php:136
+msgid "Link"
+msgstr "連結"
+
+#: html/webmaster/menu_edit.php:74 html/webmaster/menu_edit.php:137
+msgid "Parent"
+msgstr "主目錄"
+
+#: html/webmaster/menu_edit.php:75 html/webmaster/menu_edit.php:138
+msgid "Order"
+msgstr "順序"
+
+#: html/webmaster/menu_edit.php:86
+msgid "Main Menu"
+msgstr "主目錄"
+
+#: html/webmaster/menu_edit.php:87
+msgid "Sub Menu"
+msgstr "次目錄"
+
+#: html/webmaster/oem.php:401
+msgid "Purpose"
+msgstr "目的"
+
+#: html/webmaster/oem.php:403
+msgid "Contents"
+msgstr "內容"
+
+#: html/webmaster/oem.php:466 html/webmaster/oem.php:637
+msgid "Upload"
+msgstr "上傳檔案"
+
+msgid "Account Mgr."
+msgstr "帳號管理"
+
+msgid "Login"
+msgstr "登入"
+
+msgid "Account Information"
+msgstr "帳號資訊"
+
+msgid "Stream Server License Upload"
+msgstr "上傳串流伺服器啟動碼"
+
+msgid "OEM Info"
+msgstr "客製化資訊"
+
+msgid "Activation Code Look Up Tool"
+msgstr "設備啟動碼查詢工具"
+
+msgid "Admin."
+msgstr "管理者"
+
+msgid "Partner Right"
+msgstr "合作伙伴權限"
+
+msgid "Partner List"
+msgstr "管理者列表"
+
+msgid "Login Log"
+msgstr "登入記錄"
+
+msgid "Users"
+msgstr "使用者"
+
+msgid "User List"
+msgstr "使用者列表"
+
+msgid "Add / Delete End User"
+msgstr "新增/刪除 使用者帳號"
+
+msgid "Not Registered Devices"
+msgstr "未綁定設備列表"
+
+msgid "Account Device"
+msgstr "已綁定設備帳號"
+
+msgid "Delete Device"
+msgstr "刪除設備"
+
+msgid "Unregister Device"
+msgstr "解除設備綁定"
+
+msgid "Firmware"
+msgstr "軔體"
+
+msgid "Model List"
+msgstr "型號列表"
+
+msgid "Server Mgr."
+msgstr "伺服器管理"
+
+msgid "Tunnel Server"
+msgstr "穿牆伺服器"
+
+msgid "Stream Server"
+msgstr "串流何服器"
+
+msgid "Web Server"
+msgstr "網頁伺服器"
+
+msgid "Stream Server Monitor"
+msgstr "串流伺服器監控"
+
+msgid "Tunnel Server Monitor"
+msgstr "穿牆伺服器監控"
+
+msgid "Web Server Monitor"
+msgstr "網頁伺服器監控"
+
+msgid "Admin Server"
+msgstr "管理者伺服器"
+
+msgid "Webmaster"
+msgstr "網站管理員"
+
+msgid "Menu Editor"
+msgstr "目錄編輯"
+
+msgid "Menu Auth."
+msgstr "目錄權限"
+
+msgid "SYS Log"
+msgstr "系統記錄"
+
+msgid "Support"
+msgstr "支援"
+
+msgid "FAQ"
+msgstr "問與答"
+
+msgid "Documentation"
+msgstr "文件"
+
+# Jinho Added unTranslated
+msgid "Region Mgr."
+msgstr "區域管理"
+
+msgid "Account Info."
+msgstr "帳號資訊"
+
+msgid "Account Name"
+msgstr "綁定帳號"
+
+msgid "Company Chinese name"
+msgstr "公司中文名稱"
+
+msgid "Company Chinese Name"
+msgstr "公司中文名稱"
+
+msgid "Company English Name"
+msgstr "公司英文名稱"
+
+msgid "Plug-in Mgr."
+msgstr "插件管理"
+
+msgid "Push Notification"
+msgstr "推播訊息"
+
+msgid "Binding Mgr."
+msgstr "綁定管理"
+
+msgid "Service Package"
+msgstr "服務套件"
+
+msgid "Account Photo"
+msgstr "首頁底圖"
+
+msgid "Lesson Info"
+msgstr "課程資訊"
+
+msgid "Festival Info"
+msgstr "法會資訊"
+
+msgid "Push Info"
+msgstr "推播資訊"
+
+msgid "General Info"
+msgstr "一般資訊"
+
+msgid "Dealer Account Mgr."
+msgstr "零售商帳號管理"
+
+msgid "Mobile Server"
+msgstr "手機穿牆伺服器管理"
+
+msgid "Wedding Reservation"
+msgstr "婚禮預約錄影"
+
+# ###Megasys Plugin
+msgid "Service Package Update"
+msgstr "攝影機服務更新"
+
+msgid "Service Package Batch Upload"
+msgstr "攝影機服務批次更新"
+
+msgid "Share Log"
+msgstr "攝影機分享記錄"
+
+msgid "User Login Log"
+msgstr "使用者登入記錄"
+
+msgid "Billing Report"
+msgstr "攝影機日報表"
+
+msgid "Device Usage Report"
+msgstr "設備連線錄影報表"
+
+msgid "Tunnel Usage Report"
+msgstr "伺服器使用報表"
+
+msgid "Usage Report"
+msgstr "使用量統計月報表"
+
+msgid "Conn Status"
+msgstr "連線分布圖"
+
+msgid "App Download"
+msgstr "行動裝置應用下載"
+
+msgid "Workeye Map Mgr."
+msgstr "施工地圖資料管理"
+
+msgid "Godwatch Mgr."
+msgstr "神在看帳號管理"
+
+msgid "RPIC Account Mgr."
+msgstr "工地帳號管理"
+
+msgid "RPIC Maintain Mgr."
+msgstr "道管維修換機管理"
+
+msgid "Xpress License Mgmt."
+msgstr "Xpress授權管理"
+
+msgid "Camera Lic. List Mgmt."
+msgstr "攝影機授權管理"
+
+msgid "Tunnel Lic. Mgmt."
+msgstr "穿牆伺服器授權管理"
+
+msgid "Other Lic. Mgmt."
+msgstr "系統憑證管理"
+
+msgid "NAS MountPoint Mgr."
+msgstr "網頁NAS進階管理"
+
+msgid "Pipe Unit Mgr."
+msgstr "管線公共帳號管理"
+
+msgid "Shared Account Device"
+msgstr "被分享已綁定設備帳號"
+
+msgid "Shared Online Device"
+msgstr "被分享線上設備"
+
+msgid "Camera Lease Mgmt."
+msgstr "租賃專用"
+
+msgid "RPIC Mgmt."
+msgstr "道管專用"
+
+msgid "Workeye Map Log"
+msgstr "施工地圖記錄"
+
+msgid "Video TimeTable"
+msgstr "施工錄影時程紀錄"
