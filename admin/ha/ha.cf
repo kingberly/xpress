@@ -1,0 +1,12 @@
+watchdog            /dev/watchdog
+logfile             /var/log/ha-log
+debugfile           /var/log/ha-debug
+deadtime            5
+warntime            10
+initdead            15
+ucast               eth0 192.168.2.147
+auto_failback       off
+ 
+node                admin-01
+node                admin-02
+

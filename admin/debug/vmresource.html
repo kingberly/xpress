@@ -1,0 +1,554 @@
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Xpress4.1 Resource Estimation</title>
+  <script  TYPE="text/javascript">
+  
+  var webNUM = 200;
+  var rtmpNUM = 200; //depends on usage, heavy usage should be 90~130
+  //0title, 1video MB, 2bitrate, 3tunnel#, tooltip
+  var BitrateVsVideoSize = [
+  ["512Kbps (No Audio)", "210", "512","80","Messoa|Const. project default profile"], //50Mbps
+  ["175Kbps (No Audio)", "70", "175", "256","Zavio Zee 4 models default profile"],
+  ["175Kbps (Audio 12Kb)", "80", "187","256","Zavio Zee 4 models with audio output"], //47.5Mbps
+  ["256Kbps (No Audio)", "110", "256","200",""], //64Mbps
+  ["256Kbps (Audio 50Kb)", "130", "306","167","VNPT camera default profile"], //76.5Mbps
+  ["512Kbps (Audio 50Kb)", "250", "562", "65","VNPT camera highest porfile"],
+  ["384Kbps (IvedaMobile)", "175", "384", "200","High512/Mid384/Low256 with Audio 50Kb"],  //256chs =108.5Mbps
+  ["1Mbps (Audio 50Kb)", "500", "1074", "50","Estimated request"]
+  ];
+//??new array type: vmSpec[i].type 
+  var vmSpec = [
+  {type:"Stream",CPU:"4", BITRATE:"200", NUM:"150"},
+  {type:"Stream",CPU:"8",BITRATE:"256", NUM:"180"},
+  {type:"IvedaMobile",CPU:"4", BITRATE:"256", NUM:"150"},
+  {type:"IvedaMobile",CPU:"4", BITRATE:"384", NUM:"78"}, //lossless prediction as not always 512
+  {type:"IvedaMobile",CPU:"8", BITRATE:"256", NUM:"200"},
+  {type:"IvedaMobile",CPU:"8",BITRATE:"384", NUM:"100"}
+  ];
+
+  function printBitrate(type)
+  {
+      for (var i = 0; i < BitrateVsVideoSize.length; i++) {
+          if (type=="selectoption"){
+            //title supports for IE only
+            document.write("<option title='"+BitrateVsVideoSize[i][4]+"' value='"+BitrateVsVideoSize[i][1]+"'>"+BitrateVsVideoSize[i][0]+"</option>");
+          } 
+      }
+  }
+  function searchArray(type, title)
+  {
+      var data = "";
+      for (var i = 0; i < BitrateVsVideoSize.length; i++) {
+          if (BitrateVsVideoSize[i][0] == title){
+              if (type =="bitrate")
+                data = BitrateVsVideoSize[i][2];
+              else if (type =="videosize")
+                data = BitrateVsVideoSize[i][1];
+              else if (type =="tunnel")
+                data = BitrateVsVideoSize[i][3]; 
+              break;
+          }            
+      }
+      return data;
+  }
+  function assignData(form)
+  {
+    var bitrateTitle = document.forms["vmstorage"]["videosize"].options[document.forms["vmstorage"]["videosize"].selectedIndex].text;
+    var licenseNUM = form.ipcamera.value;//document.forms["vmstorage"]["camera"].value;
+    var mlicenseNUM = form.mobilecamera.value;
+    //update upper form
+    document.forms["vmstorage"]["camera"].value = parseInt(licenseNUM) + parseInt(mlicenseNUM); 
+    var tunnelNUM =searchArray("tunnel",bitrateTitle);
+    var bitrate= searchArray("bitrate",bitrateTitle);
+    //stream required to change with tunnel?
+    var streamNUM = getVMSpecNum("Stream",form.stream_cpu.value,bitrate);
+    var streamNUM_M = 0;
+    if (parseInt(mlicenseNUM) > 0) 
+      streamNUM_M = getVMSpecNum("IvedaMobile",form.stream_cpu.value,bitrate); 
+
+    document.forms["vmresource"]["streamserverinfo"].value = doStream (bitrate,document.forms["vmstorage"]["videosize"].value,streamNUM, 10);
+    if (form.firwall_qty.value == "1")
+      document.getElementById('firewall_note_text').innerHTML = "<font size=1>Monowall support 1000 sessions<br>Pfsense(2CPU) support up to 560Mbps</font>";
+    if (form.lb_qty.value != "HW")
+      document.getElementById('lb_note_text').innerHTML = "<font size=1>Virtual LB support 2000 sessions</font>";
+    if (form.nas_qty.value == "1")
+      document.getElementById('nas_note_text').innerHTML = "<font size=1>Use RAID instead,<br>does not quarantee data lost/recovery!</font>";
+    document.getElementById('rtmp_note_text').innerHTML = "<font size=1>Support "+rtmpNUM+" Mobile Chs</font>";
+    document.getElementById('web_note_text').innerHTML = "<font size=1>Support "+webNUM+" Sessions</font>";
+    document.getElementById('tunnel_note_text').innerHTML = "<font size=1>Support "+tunnelNUM+" Chs</font>";
+    document.getElementById('stream_note_text').innerHTML = "<font size=1>Support Camera "+streamNUM+" Chs</font>";
+    if (parseInt(mlicenseNUM) > 0)
+        document.getElementById('stream_note_text').innerHTML += "<br><font size=1>Support IvedaMobile "+streamNUM_M+" Chs</font>";
+    
+    if (parseInt(mlicenseNUM) > 0)
+        document.getElementById('camera_text').innerHTML = "<small>IPcamera: "+licenseNUM+"<br>Mobile:"+mlicenseNUM+"</small>";
+    else document.getElementById('camera_text').innerHTML = "<small>IPcamera: "+licenseNUM +"</small>";
+     if (form.db_qty.value == "Std")
+       form.db_qty_text.value = "1";
+     else if (form.db_qty.value == "HA")
+       form.db_qty_text.value = "2";
+    form.db_cpu_text.value = form.db_cpu.value; 
+    form.db_mem_text.value = form.db_mem.value;
+    form.db_disk_text.value = form.db_disk.value;
+    form.web_cpu_text.value = form.web_cpu.value; 
+    form.web_mem_text.value = form.web_mem.value;
+    form.web_disk_text.value = form.web_disk.value;
+    form.web_qty_text.value = Math.ceil(licenseNUM/webNUM);
+     //if (form.web_qty.value == "Std")
+     if (form.web_qty.value == "HA")
+       form.web_qty_text.value = parseInt(form.web_qty_text.value)+1;
+     else if (form.web_qty.value == "HA2")
+       form.web_qty_text.value = parseInt(form.web_qty_text.value)+2;
+
+     if (form.lb_qty.value == "Std")
+       form.lb_qty_text.value = "1";
+     else if (form.lb_qty.value == "HA")
+       form.lb_qty_text.value = "2";
+     else if (form.lb_qty.value == "HW")
+       form.lb_qty_text.value = "0";
+    form.lb_cpu_text.value = form.lb_cpu.value; 
+    form.lb_mem_text.value = form.lb_mem.value;
+    form.lb_disk_text.value = form.lb_disk.value;
+
+     if (form.tunnel_qty.value == "Std")
+       form.tunnel_qty_text.value = Math.ceil(licenseNUM/tunnelNUM);
+     else if (form.tunnel_qty.value == "HA")
+       form.tunnel_qty_text.value = Math.ceil(licenseNUM/tunnelNUM)+1;
+    form.tunnel_cpu_text.value = form.tunnel_cpu.value; 
+    form.tunnel_mem_text.value = form.tunnel_mem.value;
+    form.tunnel_disk_text.value = form.tunnel_disk.value;
+
+     if (form.stream_qty.value == "Std"){
+        if (parseInt(mlicenseNUM) > 0)
+          form.stream_qty_text.value = Math.ceil(parseInt(licenseNUM)/streamNUM+parseInt(mlicenseNUM)/streamNUM_M);
+        else
+          form.stream_qty_text.value = Math.ceil(parseInt(licenseNUM)/streamNUM);
+     }else if (form.stream_qty.value == "HA"){
+        if (parseInt(mlicenseNUM) > 0)
+          form.stream_qty_text.value = Math.ceil(parseInt(licenseNUM)/streamNUM + parseInt(mlicenseNUM)/streamNUM_M)+1;
+        else
+          form.stream_qty_text.value = Math.ceil(parseInt(licenseNUM)/streamNUM)+1;
+    }
+    form.stream_cpu_text.value = form.stream_cpu.value; 
+    form.stream_mem_text.value = form.stream_mem.value;
+    form.stream_disk_text.value = form.stream_disk.value;
+
+    if (parseInt(mlicenseNUM) > 0){
+     if (form.rtmp_qty.value == "Std")
+       form.rtmp_qty_text.value = Math.ceil(mlicenseNUM/rtmpNUM);
+     else if (form.rtmp_qty.value == "HA")
+       form.rtmp_qty_text.value = Math.ceil(mlicenseNUM/rtmpNUM)+1;
+    }else{
+       form.rtmp_qty_text.value = 0;
+    }
+    form.rtmp_cpu_text.value = form.rtmp_cpu.value; 
+    form.rtmp_mem_text.value = form.rtmp_mem.value;
+    form.rtmp_disk_text.value = form.rtmp_disk.value;
+
+     if (form.admin_qty.value == "Std")
+       form.admin_qty_text.value = "1";
+     else if (form.admin_qty.value == "HA")
+       form.admin_qty_text.value = "2";
+    form.admin_cpu_text.value = form.admin_cpu.value; 
+    form.admin_mem_text.value = form.admin_mem.value;
+    form.admin_disk_text.value = form.admin_disk.value;
+
+    form.deploy_cpu_text.value = form.deploy_cpu.value; 
+    form.deploy_mem_text.value = form.deploy_mem.value;
+    form.deploy_disk_text.value = form.deploy_disk.value;
+
+    form.firwall_qty_text.value = form.firwall_qty.value; 
+    form.firwall_cpu_text.value = form.firwall_cpu.value; 
+    form.firwall_mem_text.value = form.firwall_mem.value;
+    form.firwall_disk_text.value = form.firwall_disk.value;
+
+    form.nas_qty_text.value = form.nas_qty.value; 
+    form.nas_cpu_text.value = form.nas_cpu.value; 
+    form.nas_mem_text.value = form.nas_mem.value;
+    form.nas_disk_text.value = form.nas_disk.value;
+
+    //form.total_qty_text.value 
+    document.getElementById('total_qty_text').innerHTML= parseInt(form.nas_qty_text.value) +parseInt(form.deploy_qty_text.value) + parseInt(form.db_qty_text.value) + parseInt(form.admin_qty_text.value) + parseInt(form.lb_qty_text.value) + parseInt(form.web_qty_text.value) + parseInt(form.tunnel_qty_text.value) + parseInt(form.stream_qty_text.value) + parseInt(form.rtmp_qty_text.value)+ parseInt(form.firwall_qty_text.value);  
+    //form.total_cpu_text.value = 
+    document.getElementById('total_cpu_text').innerHTML=parseInt(form.nas_qty_text.value)*parseInt(form.nas_cpu_text.value) +parseInt(form.deploy_qty_text.value)*parseInt(form.deploy_cpu_text.value) + parseInt(form.db_qty_text.value)*parseInt(form.db_cpu_text.value) + parseInt(form.admin_qty_text.value)*parseInt(form.admin_cpu_text.value) + parseInt(form.lb_qty_text.value)*parseInt(form.lb_cpu_text.value) + parseInt(form.web_qty_text.value)*parseInt(form.web_cpu_text.value) + parseInt(form.tunnel_qty_text.value)*parseInt(form.tunnel_cpu_text.value) + parseInt(form.stream_qty_text.value)*parseInt(form.stream_cpu_text.value) + parseInt(form.rtmp_qty_text.value)*parseInt(form.rtmp_cpu_text.value) + parseInt(form.firwall_qty_text.value)*parseInt(form.firwall_cpu_text.value);
+    document.getElementById('total_cpu_text').innerHTML = document.getElementById('total_cpu_text').innerHTML + " core";   
+    //form.total_mem_text.value = 
+    document.getElementById('total_mem_text').innerHTML=parseInt(form.nas_qty_text.value)*parseInt(form.nas_mem_text.value) +parseInt(form.deploy_qty_text.value)*parseInt(form.deploy_mem_text.value) + parseInt(form.db_qty_text.value)*parseInt(form.db_mem_text.value) + parseInt(form.admin_qty_text.value)*parseInt(form.admin_mem_text.value) + parseInt(form.lb_qty_text.value)*parseInt(form.lb_mem_text.value) + parseInt(form.web_qty_text.value)*parseInt(form.web_mem_text.value) + parseInt(form.tunnel_qty_text.value)*parseInt(form.tunnel_mem_text.value) + parseInt(form.stream_qty_text.value)*parseInt(form.stream_mem_text.value) + parseInt(form.rtmp_qty_text.value)*parseInt(form.rtmp_mem_text.value)+ parseInt(form.firwall_qty_text.value)*parseInt(form.firwall_mem_text.value);
+    document.getElementById('total_mem_text').innerHTML = document.getElementById('total_mem_text').innerHTML + " G";
+    //form.total_disk_text.value = 
+    document.getElementById('total_disk_text').innerHTML=parseInt(form.nas_qty_text.value)*parseInt(form.nas_disk_text.value) +parseInt(form.deploy_qty_text.value)*parseInt(form.deploy_disk_text.value) + parseInt(form.db_qty_text.value)*parseInt(form.db_disk_text.value) + parseInt(form.admin_qty_text.value)*parseInt(form.admin_disk_text.value) + parseInt(form.lb_qty_text.value)*parseInt(form.lb_disk_text.value) + parseInt(form.web_qty_text.value)*parseInt(form.web_disk_text.value) + parseInt(form.tunnel_qty_text.value)*parseInt(form.tunnel_disk_text.value) + parseInt(form.stream_qty_text.value)*parseInt(form.stream_disk_text.value) + parseInt(form.rtmp_qty_text.value)*parseInt(form.rtmp_disk_text.value)+ parseInt(form.firwall_qty_text.value)*parseInt(form.firwall_disk_text.value);;
+    document.getElementById('total_disk_text').innerHTML = document.getElementById('total_disk_text').innerHTML + " GB";
+
+
+  }
+
+  function getVMSpecNum(servertype,cputype,bitrate)
+  {
+      var data = "";
+      for (var i = 0; i < vmSpec.length; i++) {
+        if (vmSpec[i].type == servertype){
+          if (vmSpec[i].CPU == cputype){
+              if ( parseInt(bitrate) <= parseInt(vmSpec[i].BITRATE) ){
+                  data = vmSpec[i].NUM;
+              }else {
+                  data = Math.floor(parseInt(vmSpec[i].NUM)*parseInt(vmSpec[i].BITRATE)/parseInt(bitrate));
+              }
+              break;
+          }//cputype
+        }//servertype            
+      }
+      return data;
+  }
+
+  function doStream (bitrate,size,supportNUM, intervalminute)
+  {
+      var Mstorage=Math.ceil(size * supportNUM /1024); //MB=>GB
+      var MstorageF=parseFloat(size * supportNUM /1024).toFixed(1)//Math.ceil(size * supportNUM /1024); //MB=>GB
+      var peakbitrate = parseInt(bitrate) * 2;
+      var tempspeed = Math.ceil(bitrate * supportNUM/1024/8);
+      var tempspeedF = parseFloat(bitrate * supportNUM/1024/8).toFixed(1);//Math.ceil(bitrate * supportNUM/1024/8);
+      var speed = Math.ceil(tempspeed * 60/intervalminute); 
+      var speedF = parseFloat(tempspeedF * 60/intervalminute).toFixed(1);//Math.ceil(tempspeed * 60/intervalminute);
+      var data = "("+intervalminute+" mins video moving requirement)\nEach Stream required "+speedF + " MB/s disk performance\n"+Mstorage +" ("+MstorageF+") GB temporary disk size\n" +tempspeedF +" MB/s temp disk performance" ;
+      return data;      
+  } 
+
+  function doStorage (size,number, hour,day, buffer)
+  {
+      day = parseInt(day)+1;
+      var storage=size * number * hour * day * buffer;
+      var GstorageF = parseFloat(storage/1024).toFixed(1);//Math.ceil(storage/1024);
+      var TstorageF = parseFloat(GstorageF/1024).toFixed(2);
+      var data;
+        data = "Camera Recording Storage required "+GstorageF + " GB\n\t\t\t\t\t\t\t  "+TstorageF +" TB";
+      return data;      
+  } 
+  function doBandwidth (title, number)
+  {
+      var bitrate = searchArray("bitrate",title);
+      var bw = parseInt(bitrate) * number;
+      var mbw = Math.ceil(bw/1024);
+      var gbw = 0;
+      if (parseInt(mbw) > 1000)
+        gbw = Math.ceil(mbw/1000);  
+      var pbwStr;
+      if (gbw >0 )
+        pbwStr = Math.ceil(gbw/0.7) + " Gbps (70% throughput)";
+      else pbwStr = Math.ceil(mbw/0.7) + " Mbps (70% throughput)";
+      var data = "Total Video Bandwidth required ";
+      if (gbw > 0){
+        data += mbw +"Mbps ("+gbw +" Gbps)";
+        data +="\nTotol LAN/Portal Bandwidth required "+pbwStr;
+      }else{
+          data += mbw +" Mbps";
+          data +="\nTotol LAN/Portal Bandwidth required "+pbwStr;
+      } 
+      return data; 
+  }
+
+  
+  function checkHW (form)
+  {
+  //pass select obj
+  //if (obj.options[obj.options.selectedIndex].value == "0")
+      //form.options[document.forms["vmstorage"]["videosize"].selectedIndex].text;
+      //document.all.sel.options[0].selected=true;
+      //alert(document.forms["vmresource"]["firewall_cpu"].selectedIndex);
+  }
+    
+  function test(form)
+  {
+      //alert (form.videosize.selectedIndex);
+      //alert (form.videosize.options[form.videosize.selectedIndex].text);
+      //alert (form.videosize.name);
+  }
+   
+  </script>
+  </head>
+  <body>
+<h2>Xpress4.1 Resource Estimation</h2>
+<form name=vmstorage>
+<table>
+<tr><th></th><th></th><td rowspan=6>
+<textarea name=myinfo rows=10 cols=50>
+Put your note here
+</textarea>
+</td></tr>
+
+<tr><td bgcolor=HotPink >
+Video Bitrate: <select name=videosize>
+<script>printBitrate("selectoption");</script>
+</select>
+&nbsp;&nbsp;&nbsp;
+</td><td>
+Camera#: <input type=text name=camera value=500 size=3>
+&nbsp;&nbsp;&nbsp;
+</td></tr>
+
+<tr><td>
+Recording Hours: <input type=text name=hour value=24 size=3>
+&nbsp;&nbsp;&nbsp;
+</td><td>
+Days: <input type=text name=day value=90 size=3>
+&nbsp;&nbsp;&nbsp;
+</td></tr><tr><td colspan=2>
+Storage Buffer: <select name=buffer>
+<option value="1.2">20%</option>
+<option value="1.5">50%</option>
+<option value="2">Taipei Const.</option>
+<option value="1">No Buffer</option>
+</select>
+</td></tr><tr><td colspan=2>
+<input type=button value="Calculate Storage" onclick="this.form.storageinfo.value=doStorage(this.form.videosize.value,this.form.camera.value,this.form.hour.value,this.form.day.value,this.form.buffer.value);this.form.streaminfo.value=doBandwidth(this.form.videosize.options[this.form.videosize.selectedIndex].text,this.form.camera.value);"> =>
+&nbsp;&nbsp;&nbsp;
+<textarea name=storageinfo rows=2 cols=50 disabled>
+</textarea>
+</td></tr><tr><td colspan=2>
+Bandwidth =>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<textarea name=streaminfo rows=3 cols=50 disabled>
+</textarea>
+</td></tr>
+</table>
+</form>
+<form name=vmresource>
+IP Camera#: <input type=text name=ipcamera value=500 size=3>
+&nbsp;&nbsp;&nbsp;
+Mobile Camera#: <input type=text name=mobilecamera value=0 size=3>
+<br>
+<input type=button value="Calculate Resource" onclick="assignData(this.form);">
+=>&nbsp;&nbsp;&nbsp;
+<textarea name=streamserverinfo rows=4 cols=50 disabled>
+</textarea>
+<br>
+<table>
+<tr bgcolor=lawngreen>
+<th>License</th>
+<th>Server Type</th>
+<th>Qty</th>
+<th>CPU</th>
+<th>MEM</th>
+<th>Local<br>Volume(GB)</th>
+<th>Note</th>
+</tr>
+<tr><td rowspan=11>
+<div id=camera_text></div>
+</td></tr>
+
+<tr><td>Firewall </td>
+<td><select name=firwall_qty> <!-- onchange="checkHW(this.form)" -->
+<option value=1>Virtaul</option>
+<option value=0 selected>HW</option></select><input type=text size=1 disabled name=firwall_qty_text></td>
+<td><select name=firwall_cpu>
+<option value=2>2</option>
+<option value=4>4</option>
+<option value=1>1</option>
+<option value=0 selected>NA</option>
+</select><input type=text size=1 disabled name=firwall_cpu_text></td>
+<td><select name=firwall_mem>
+<option value=6>6</option>
+<option value=8>8</option>
+<option value=0 selected>NA</option>
+</select><input type=text size=1 disabled name=firwall_mem_text></td>
+<td><select name=firwall_disk>
+<option value=50>50</option>
+<option value=20>20</option>
+<option value=0 selected>NA</option>
+</select><input type=text size=1 disabled name=firwall_disk_text>
+</td><td><div id="firewall_note_text"></div></td></tr>
+
+<tr><td>Database </td>
+<td><select name=db_qty>
+<option value=Std>Std</option>
+<option value=HA>HA</option></select><input type=text size=1 disabled name=db_qty_text></td>
+<td><select name=db_cpu>
+<option value=4>4</option>
+<option value=8>8</option>
+</select><input type=text size=1 disabled name=db_cpu_text></td>
+<td><select name=db_mem>
+<option value=8>8</option>
+</select><input type=text size=1 disabled name=db_mem_text></td>
+<td><select name=db_disk>
+<option value=200>200</option>
+<option value=300 selected>300</option>
+<option value=360>60+300</option>
+</select><input type=text size=1 disabled name=db_disk_text>
+</td><td></td></tr>
+
+<tr><td>Web </td>
+<td><select name=web_qty>
+<option value="Std">Std</option>
+<option value="HA" selected>Plus1</option>
+<option value="HA2" >Plus2</option></select>
+<input type=text size=1 disabled name=web_qty_text value="per #"></td>
+<td><select name=web_cpu>
+<option value=2>2</option>
+</select><input type=text size=1 disabled name=web_cpu_text></td>
+<td><select name=web_mem>
+<option value=2>2</option>
+</select><input type=text size=1 disabled name=web_mem_text></td>
+<td><select name=web_disk>
+<option value=50>50</option>
+<option value=60>60</option>
+</select><input type=text size=1 disabled name=web_disk_text></td>
+<td><div id="web_note_text"></div></td></tr>
+
+<tr><td>Load Balancer </td>
+<td><select name=lb_qty>
+<option value=Std>Std</option>
+<option value=HA selected>HA</option>
+<option value=HW>HW</option>
+</select><input type=text size=1 disabled name=lb_qty_text value=2></td>
+<td><select name=lb_cpu>
+<option value=2>2</option>
+<option value=0>NA</option>
+</select><input type=text size=1 disabled name=lb_cpu_text></td>
+<td><select name=lb_mem>
+<option value=4>4</option>
+<option value=8>8</option>
+<option value=0>NA</option>
+</select><input type=text size=1 disabled name=lb_mem_text></td>
+<td><select name=lb_disk>
+<option value=50>50</option>
+<option value=60>60</option>
+<option value=0>NA</option>
+</select><input type=text size=1 disabled name=lb_disk_text></td><td><div id="lb_note_text"></div></td></tr>
+
+<tr><td>Tunnel </td>
+<td><select name=tunnel_qty>
+<option value=Std>Std</option>
+<option value=HA selected>HA</option></select>
+<input type=text size=1 disabled name=tunnel_qty_text value="per #"></td>
+<td><select name=tunnel_cpu>
+<option value=2>2</option>
+<option value=4>4</option>
+</select><input type=text size=1 disabled name=tunnel_cpu_text></td>
+<td><select name=tunnel_mem>
+<option value=2>2</option>
+<option value=4>4</option>
+</select><input type=text size=1 disabled name=tunnel_mem_text></td>
+<td><select name=tunnel_disk>
+<option value=50>50</option>
+<option value=60>60</option>
+</select><input type=text size=1 disabled name=tunnel_disk_text></td>
+<td><div id="tunnel_note_text"></div></td></tr>
+
+<tr><td>Rtmp (MobileCam)</td>
+<td><select name=rtmp_qty>
+<option value=Std>Std</option>
+<option value=HA selected>HA</option></select>
+<input type=text size=1 disabled name=rtmp_qty_text value="per #"></td>
+<td><select name=rtmp_cpu>
+<option value=2>2</option>
+<option value=4>4</option>
+</select><input type=text size=1 disabled name=rtmp_cpu_text></td>
+<td><select name=rtmp_mem>
+<option value=2>2</option>
+<option value=4>4</option>
+</select><input type=text size=1 disabled name=rtmp_mem_text></td>
+<td><select name=rtmp_disk>
+<option value=50>50</option>
+<option value=60>60</option>
+</select><input type=text size=1 disabled name=rtmp_disk_text></td>
+<td><div id="rtmp_note_text"></div></td></tr>
+
+<tr><td>Stream </td>
+<td><select name=stream_qty>
+<option value=Std>Std</option>
+<option value=HA selected>HA</option></select>
+<input type=text size=1 disabled name=stream_qty_text value="per #"></td>
+<td><select name=stream_cpu>
+<option value=4>4</option>
+<option value=8 selected>8</option>
+</select><input type=text size=1 disabled name=stream_cpu_text></td>
+<td><select name=stream_mem>
+<option value=8>8</option>
+</select><input type=text size=1 disabled name=stream_mem_text></td>
+<td><select name=stream_disk>
+<option value=300>300</option>
+<option value=100>100</option>
+<option value=50>50</option>
+<option value=60>60</option>
+</select><input type=text size=1 disabled name=stream_disk_text>
+**
+</td>
+<td><div id="stream_note_text"></div></td></tr>
+
+<tr><td>Admin </td>
+<td><select name=admin_qty>
+<option value=Std>Std</option>
+<option value=HA selected>HA</option></select><input type=text size=1 disabled name=admin_qty_text value=2></td>
+<td><select name=admin_cpu>
+<option value=2>2</option>
+</select><input type=text size=1 disabled name=admin_cpu_text></td>
+<td><select name=admin_mem>
+<option value=2>2</option>
+<option value=4>4</option>
+</select><input type=text size=1 disabled name=admin_mem_text></td>
+<td><select name=admin_disk>
+<option value=50>50</option>
+<option value=60>60</option>
+</select><input type=text size=1 disabled name=admin_disk_text></td><td></td></tr>
+
+<tr><td>Deploy Windows </td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type=text size=1 disabled name=deploy_qty_text value="1"></td>
+<td><select name=deploy_cpu>
+<option value=1>1</option>
+<option value=2>2</option>
+</select><input type=text size=1 disabled name=deploy_cpu_text></td>
+<td><select name=deploy_mem>
+<option value=2>2</option>
+</select><input type=text size=1 disabled name=deploy_mem_text></td>
+<td><select name=deploy_disk>
+<option value=50>50</option>
+<option value=60>60</option>
+</select><input type=text size=1 disabled name=deploy_disk_text></td><td></td></tr>
+
+<tr><td>NAS </td>
+<td><select name=nas_qty>
+<option value=1>Virtaul</option>
+<option value=0 selected>HW</option></select><input type=text size=1 disabled name=nas_qty_text></td>
+<td><select name=nas_cpu>
+<option value=4>4</option>
+<option value=8>8</option>
+<option value=0 selected>NA</option>
+</select><input type=text size=1 disabled name=nas_cpu_text></td>
+<td><select name=nas_mem>
+<option value=8>8</option>
+<option value=16>16</option>
+<option value=0 selected>NA</option>
+</select><input type=text size=1 disabled name=nas_mem_text></td>
+<td><select name=nas_disk>
+<option value=50>50</option>
+<option value=0 selected>NA</option>
+</select><input type=text size=1 disabled name=nas_disk_text>
+</td><td><div id="nas_note_text"></div></td></tr>
+
+<tr bgcolor=grey><td>Total
+</td><td></td>
+<td><div id="total_qty_text"></div></td>
+<td><div id="total_cpu_text"></div></td>
+<td><div id="total_mem_text"></div></td>
+<td><div id="total_disk_text"></div></td>
+<!--td><input type=text size=5 disabled name=total_qty_text></td>
+<td><input type=text size=5 disabled name=total_cpu_text></td>
+<td><input type=text size=5 disabled name=total_mem_text></td>
+<td><input type=text size=5 disabled name=total_disk_text></td-->
+<td></td></tr>
+
+</table>
+</form>
+<table>
+<tr><td colspan=2>
+ ** Stream server virtual disk requirement: <b>Thick Provision Eager Zeroed</b><br>
+ (VMware support Thick Provision Lazy Zeroed, Thick Provision Eager Zeroed, Thin Provision)  
+ </td></tr> 
+ <tr><td>
+<img src="h264-bitrate-vs-resolution.png">
+</td><td>
+<img src="mjpeg-bitrate-vs-resolution.png">
+</td></tr>
+</table>
+  </body>
+</html>
