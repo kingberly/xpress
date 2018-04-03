@@ -1,0 +1,3 @@
+
+bWriteLog = False
+bColorTag = True
