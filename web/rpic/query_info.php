@@ -1,0 +1,158 @@
+<?php
+/****************
+ *Validated on Jan.9, 2018
+ *Xpress APP login log by camera list 
+ *4935byte compatible by 3.0.3~ 3.2.4(v3870) 
+ *Writer : JinHo Chang   
+*****************/
+/*************************************************************************************
+ * input arguments                                                                   *
+ *************************************************************************************
+ * Device Info
+ *************************************************************************************
+ * mac_addr
+ * type: service_type (WEB/MEDIA/FTP/...)
+ * dtype: device_type (syncme/ipcam/nas/...)
+ *************************************************************************************
+ * API Info
+ *************************************************************************************
+ * ver: version number (unused now)
+ **************************************************************************************
+ * for authentication
+ **************************************************************************************
+ * user: the name in the user table
+ * key: a random value for calculating hash
+ * hash: the hash of the combinatino of name, pwd & key
+ **************************************************************************************
+ * for controling output format
+ **************************************************************************************
+ * output_format: default to json
+ *************************************************************************************
+ * output arguments                                                                  *
+ *************************************************************************************
+ * status: "sucess" or not "success"
+ * error_msg: show the error status
+ * result: an array of device data
+ */
+include_once( "./include/global.php" );
+include_once( "./include/utility.php" );
+include_once( "./include/db_function.php" );
+include_once( "./include/license_db_function.php" );
+include_once( "./include/device_function.php" );
+include_once( "./include/user_function.php" );
+include_once( "./include/xml_function.php" );
+require('./include/oem_id.php');
+include_once( "rpic_query.inc" ); //jinho for APP login
+// default status to success
+$ret["status"] = "success";
+$ret["error_msg"] = "";
+
+// to be compatibile for post
+if (count($_GET)==0) {
+  $_GET = $_POST;
+}
+
+try {
+  // open db
+  $data_db = new DataDBFunction();
+  $license_db = new LicenseDBFunction();
+
+  // try to get user info
+  $get_user_info_status = VerifyUserWithGet($data_db, $_GET, $user_info_row);
+  if( $get_user_info_status != VERIFY_USER_HASH_IN_USER_TABLE_SUCCESS )
+    throw new Exception( "Authentication failed." );
+  else{//jinho added for login log
+    //error_log($_SERVER['REMOTE_ADDR'].":login".print_r($_GET, TRUE)); //login p2p/shared
+    //camera dtype=p2p type=camera,nvr
+    if (isset($_REQUEST['dtype']))  AppLog("APP LOGIN",$user_info_row);
+  }//end of jinho added 
+  // Set default values.
+  if (!isset($_GET['oem_id'])) $_GET['oem_id'] = '';
+
+  // Validate OEM ID.
+  if (!oem_id_login_check($user_info_row['oem_id'], $_GET['oem_id'])) {
+    throw new Exception('Product unmatched.');
+  }
+
+  // prepare condition
+  $params = array();
+  if ($_GET['list_type']=='shared') {
+    $table = 'query_share';
+    $condition = 'visitor_id=:visitor_id AND enabled = 1';
+    $params[':visitor_id'] = $user_info_row['id'];
+    $owner_id_column = 'owner_id,'; // show owner_id for shared cameras
+  }
+  else {
+    $table = 'query_info';
+    $condition = 'owner_id=:owner_id';
+    $params[':owner_id'] = $user_info_row['id'];
+    $owner_id_column = '';
+  }
+
+  if( $_GET["mac_addr"] != "" ) {
+    $condition .= " AND mac_addr=:mac_addr";
+    $params[':mac_addr'] = $_GET['mac_addr'];
+  }
+  if( $_GET["uid"] != "" ) {
+    $condition .= " AND uid=:uid";
+    $params[':uid'] = $_GET['uid'];
+  }
+  if( $_GET["type"] != "" ) {
+    $type_list = '(';
+    $types = explode(",", strtolower($_GET['type']));
+    $delim = '';
+    foreach ($types as $i => $type) {
+      $type_list .= "$delim:type$i";
+      $params[":type$i"] = $type;
+      $delim = ',';
+    }
+    $type_list .= ')';
+    $condition .= " AND service_type IN $type_list";
+  }
+  if( $_GET["dtype"] != "" ) {
+    $condition .= " AND device_type=:device_type";
+    $params[':device_type'] = strtolower($_GET['dtype']);
+  }
+
+  if ($_GET["direct_connection"]) {
+    $ip_addr = 'ip_addr';
+    $port = 'port';
+  }
+  else {
+    $ip_addr = 'internal_ip_addr';
+    $port = 'internal_port';
+  }
+  
+
+  // query data
+  $ret["result"] = $data_db->QueryRecordDataArray(
+    $table,
+    $condition,
+    "id, uid, name, $owner_id_column
+     url_prefix, purpose, $ip_addr as ip_addr,
+     $port as port,
+     url_path, enc, mac_addr,
+     service_type, device_type,
+     features, default_id, default_pw, manufacturer, model, device_models_version,
+     is_signal_online", '', $params);
+
+  $ret['tunnel_server'] = $data_db->GetRandomTunnelServer($user_info_row['id']);
+}
+catch( Exception $e ) {
+  SetErrorState( $ret, $e->getMessage() );
+}
+
+// encode & return
+if( $_GET["output_format"] == "xml" ) 
+{
+  ConvertPHPArrayToXML( $xml_doc, $xml_root_node, $ret, "root" );
+  $xml_ret = $xml_doc->saveXML();
+  header( "Content-Length: " . strlen($xml_ret) );
+  echo $xml_ret;
+}
+else {
+  header( 'Content-type: application/json; charset=utf-8' );
+    echo json_encode( $ret );
+}
+
+?>

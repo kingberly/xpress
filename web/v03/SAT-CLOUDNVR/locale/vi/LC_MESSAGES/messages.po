@@ -1,0 +1,1493 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SAT_WEB\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-17 14:28+0800\n"
+"PO-Revision-Date: 2016-06-15 12:00+0800\n"
+"Last-Translator: \n"
+"Language-Team: Vietnamese <http://example.com/projects/sat-web/messages/vi/"
+">\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: /home/capitalm/SAT_WEB/branches/SAT-QLYNC-02/\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ./include\n"
+
+#: backstage_device.php:111 backstage_device.php:117
+#: syncme/backstage_device.php:111 syncme/backstage_device.php:117
+#: backstage_device.php:114 backstage_device.php:120
+msgid "Invalid activation code."
+msgstr "Mã kích hoạt không đúng"
+
+#: backstage_device.php:114 syncme/backstage_device.php:114
+#: backstage_device.php:117
+msgid "The activation code has been used."
+msgstr "Mã kích hoạt đã được sử dụng"
+
+#: backstage_device.php:128 syncme/backstage_device.php:128
+#: backstage_device.php:131
+msgid "No matching device."
+msgstr "Không có thiết bị  phù hợp"
+
+#: backstage_login.php:32 syncme/backstage_login.php:32 backstage_login.php:49
+msgid "Product unmatched."
+msgstr "Sản phẩm không phù hợp"
+
+#: backstage_login.php:35 syncme/backstage_login.php:35 backstage_login.php:52
+msgid "Please check your confirm letter first."
+msgstr "Vui long kiểm tra hộp thư"
+
+#: backstage_login.php:38 backstage_login.php:46 syncme/backstage_login.php:38
+#: syncme/backstage_login.php:46 backstage_login.php:56 backstage_login.php:65
+msgid "Invalid Username / Password."
+msgstr "Tên/Mật khẩu Không đúng"
+
+#: backstage_login.php:42 syncme/backstage_login.php:42 backstage_login.php:61
+msgid "Your ID has expired."
+msgstr "Mã người dụng của bạn đã hết hạn sử dụng"
+
+#: backstage_share.php:23 door_phone/door_db_function.php:38
+#: backstage_share.php:20
+msgid "Device not found."
+msgstr "Không tìm thấy thiết bị"
+
+#: backstage_share.php:31 backstage_share.php:28
+msgid "User not found."
+msgstr "Không tìm thấy tên người dung"
+
+#: backstage_share.php:51 backstage_share.php:35
+msgid "Share device failed."
+msgstr "Có lỗi trong quá trình chia sẻ thiết bị"
+
+#: backstage_share.php:113 backstage_share.php:74
+msgid "Login required"
+msgstr "Cần đăng nhập trước khi sử dụng"
+
+#: backstage_user_register.php:36 syncme/backstage_user_register.php:36
+#: backstage_user_register.php:38
+msgid "Security image verify failed."
+msgstr "Ảnh xác thực không hợp lệ"
+
+#: backstage_user_register.php:52 backstage_user_register.php:55
+#: backstage_user_register.php:267 syncme/backstage_user_register.php:52
+#: syncme/backstage_user_register.php:55
+#: syncme/backstage_user_register.php:267
+msgid "E-mail is already in use."
+msgstr "E-mail is already in use."
+
+#: backstage_user_register.php:97 syncme/backstage_user_register.php:97
+#: backstage_user_register.php:96
+msgid "Please input the correct username and email address."
+msgstr "Vui lòng nhập đúng tên tài khoản và địa chỉ mail"
+
+#: backstage_user_register.php:184 syncme/backstage_user_register.php:184
+msgid "Please provide your account name."
+msgstr "Hãy cung cấp tên tài khoản của bạn."
+
+#: backstage_user_register.php:190 syncme/backstage_user_register.php:190
+#: backstage_user_register.php:174
+msgid "The account does not exist."
+msgstr "Tài khoản không tồn tại"
+
+#: device_list.php:87 device_list.php:88 syncme/device_list_syncme.php:87
+#: user_list.php:50 device_list.php:103 device_list.php:104
+msgid "Add"
+msgstr "Thêm"
+
+#: device_list.php:90 device_list.php:106
+msgid "Google Authentication"
+msgstr "Xác thực từ Google"
+
+#: device_list.php:95 index.php:467 my_account.php:37
+#: syncme/device_list_syncme.php:90 syncme/my_account.php:31
+#: device_list.php:111 index.php:463 iveda/index.php:422
+msgid "Device"
+msgstr "Thiết bị"
+
+#: device_list.php:100 index.php:447 index.php:468 my_account.php:42
+#: my_account.php:50 syncme/device_list_syncme.php:91 syncme/my_account.php:32
+#: device_list.php:116 index.php:464 iveda/index.php:423
+msgid "Account"
+msgstr "Tài khoản"
+
+#: device_list.php:115 device_log.php:39 device_unknown.php:59
+#: syncme/device_list_syncme.php:100 user_list.php:53 user_list.php:77
+#: device_list.php:131
+msgid "ID"
+msgstr "ID"
+
+#: device_list.php:116 device_register_manual.php:90 device_unknown.php:60
+#: js/translatejs.php:69 p2p_diagnosis.php:173
+#: syncme/device_list_syncme.php:101 ui_component/device_config_dialog.php:7
+#: user_register_authentication.php:76 device_list.php:132
+msgid "Name"
+msgstr "Tên"
+
+#: device_list.php:117 syncme/device_list_syncme.php:102
+#: ui_component/device_config_dialog.php:16 device_list.php:133
+#: ui_component/device_config_dialog.php:13
+msgid "Owner"
+msgstr "Chủ sở hữu"
+
+#: device_list.php:118 device_register_manual.php:72
+#: device_register_manual.php:78 device_unknown.php:61 js/translatejs.php:37
+#: js/translatejs.php:70 syncme/device_list_syncme.php:103
+#: ui_component/device_config_dialog.php:23 device_list.php:134
+#: ui_component/device_config_dialog.php:20
+msgid "MAC Address"
+msgstr "Địa chỉ MAC"
+
+#: device_list.php:119 device_register_manual.php:73
+#: device_register_manual.php:84 device_unknown.php:62
+#: syncme/device_list_syncme.php:104 ui_component/device_config_dialog.php:29
+#: device_list.php:135
+msgid "Service ID"
+msgstr "Service ID - Mã Dịch vụ"
+
+#: device_list.php:120 device_unknown.php:63 js/translatejs.php:48
+#: syncme/device_list_syncme.php:105 device_list.php:136
+msgid "Service Type"
+msgstr "Loại dịch vụ"
+
+#: device_list.php:121 device_log.php:44 device_unknown.php:65
+#: syncme/device_list_syncme.php:106 ui_component/device_config_dialog.php:42
+#: device_list.php:137
+msgid "IP Address"
+msgstr "Địa chỉ IP"
+
+#: device_list.php:122 device_unknown.php:66 syncme/device_list_syncme.php:107
+#: ui_component/device_config_dialog.php:60 device_list.php:138
+#: ui_component/device_config_dialog.php:26
+msgid "Port"
+msgstr "Port"
+
+#: device_list.php:123 syncme/device_list_syncme.php:108
+#: ui_component/device_config_dialog.php:80 device_list.php:139
+msgid "Auto Locate"
+msgstr "Tự động gán vị trí"
+
+#: device_list.php:124 map_selector.php:125 syncme/device_list_syncme.php:109
+#: ui_component/device_config_dialog.php:86 device_list.php:140
+msgid "Latitude"
+msgstr "Vĩ độ"
+
+#: device_list.php:125 map_selector.php:129 syncme/device_list_syncme.php:110
+#: ui_component/device_config_dialog.php:92 device_list.php:141
+msgid "Longitude"
+msgstr "Kinh độ"
+
+#: device_list.php:126 device_unknown.php:67 my_account.php:116
+#: syncme/device_list_syncme.php:111 syncme/my_account.php:84
+#: ui_component/device_config_dialog.php:66 user_list.php:59 user_list.php:118
+#: device_list.php:142 my_account.php:102
+msgid "Register Date"
+msgstr "Ngày đăng kí"
+
+#: device_list.php:127 syncme/device_list_syncme.php:112
+#: ui_component/device_config_dialog.php:70 device_list.php:143
+msgid "Update Date"
+msgstr "Ngày cập nhật"
+
+#: device_list.php:128 my_account.php:124 syncme/device_list_syncme.php:113
+#: syncme/my_account.php:92 ui_component/device_config_dialog.php:74
+#: user_list.php:61 user_list.php:126 device_list.php:144 my_account.php:110
+msgid "Expire Date"
+msgstr "Ngày hết hạn"
+
+#: device_list.php:129 syncme/device_list_syncme.php:114
+#: ui_component/device_config_dialog.php:98 device_list.php:145
+msgid "Public Device"
+msgstr "Public Device"
+
+#: device_list.php:130 syncme/device_list_syncme.php:115
+msgid "Device Matrix"
+msgstr "Device Matrix"
+
+#: device_list.php:131 js/translatejs.php:58 syncme/device_list_syncme.php:116
+#: device_list.php:147
+msgid "My Favorite"
+msgstr "My Favorite"
+
+#: device_list.php:132 device_unknown.php:68 syncme/device_list_syncme.php:117
+#: user_list.php:62 device_list.php:148
+msgid "Config"
+msgstr "Cấu hình"
+
+#: device_list.php:138 device_log.php:32 device.php:144
+#: device_register_manual.php:59 device_unknown.php:74 js/translatejs.php:39
+#: map_selector.php:134 my_account.php:53
+#: password_recovery_authentication_mobile.php:133 password_recovery.php:67
+#: syncme/device_list_syncme.php:123 syncme/device.php:144
+#: syncme/my_account.php:27 syncme/user_register.php:55
+#: translation_manage.php:73 user_list.php:69
+#: user_register_authentication.php:62 user_register.php:55
+#: device_list.php:154 device.php:147 device.php:154 user_register.php:36
+msgid "Apply"
+msgstr "Áp dụng"
+
+#: device_list.php:139 device_unknown.php:75 include/tail.php:8
+#: syncme/device_list_syncme.php:124 translation_manage.php:28
+#: user_list.php:70 device_list.php:155
+msgid "Cancel"
+msgstr "Hủy"
+
+#: device_list.php:146 device_map.php:107 device_unknown.php:81
+#: syncme/device_list_syncme.php:133 syncme/device_map.php:107
+#: user_list.php:139 device_list.php:162
+msgid "Items Per Page"
+msgstr "Số mục trong một trang"
+
+#: device_list.php:154 device_map.php:115 device_matrix.php:159
+#: device_unknown.php:89 nvr_matrix.php:159 shared_matrix.php:158
+#: syncme/device_list_syncme.php:140 syncme/device_map.php:115
+#: user_list.php:147 device_list.php:170 device_matrix.php:169
+#: iveda/device_matrix.php:173 iveda/shared_matrix.php:171 nvr_matrix.php:161
+#: shared_matrix.php:168
+msgid "First Page"
+msgstr "Trang đầu"
+
+#: device_list.php:155 device_map.php:116 device_matrix.php:160
+#: device_unknown.php:90 nvr_matrix.php:160 shared_matrix.php:159
+#: syncme/device_list_syncme.php:141 syncme/device_map.php:116
+#: user_list.php:148 device_list.php:171 device_matrix.php:170
+#: iveda/device_matrix.php:174 iveda/shared_matrix.php:172 nvr_matrix.php:162
+#: shared_matrix.php:169
+msgid "Previous Page"
+msgstr "Trang cuối"
+
+#: device_list.php:155 device_matrix.php:160 shared_matrix.php:159
+#: device_list.php:171 device_matrix.php:170 iveda/device_matrix.php:174
+#: iveda/shared_matrix.php:172 shared_matrix.php:169
+msgid "Prev"
+msgstr "Trước"
+
+#: device_list.php:156 device_map.php:117 device_matrix.php:161
+#: device_unknown.php:91 nvr_matrix.php:161 shared_matrix.php:160
+#: syncme/device_list_syncme.php:147 syncme/device_map.php:117
+#: user_list.php:149 device_list.php:172 device_matrix.php:171
+#: iveda/device_matrix.php:175 iveda/shared_matrix.php:173 nvr_matrix.php:163
+#: shared_matrix.php:170
+msgid "Next Page"
+msgstr "Trang kế"
+
+#: device_list.php:156 device_matrix.php:161 js/translatejs.php:35
+#: shared_matrix.php:160 device_list.php:172 device_matrix.php:171
+#: iveda/device_matrix.php:175 iveda/shared_matrix.php:173
+#: shared_matrix.php:170
+msgid "Next"
+msgstr "Kế tiếp"
+
+#: device_list.php:157 device_map.php:118 device_matrix.php:162
+#: device_unknown.php:92 nvr_matrix.php:162 shared_matrix.php:161
+#: syncme/device_list_syncme.php:153 syncme/device_map.php:118
+#: user_list.php:150 device_list.php:173 device_matrix.php:172
+#: iveda/device_matrix.php:176 iveda/shared_matrix.php:174 nvr_matrix.php:164
+#: shared_matrix.php:171
+msgid "Last Page"
+msgstr "Trang cuối"
+
+#: device_log.php:40
+msgid "User ID"
+msgstr "User ID"
+
+#: device_log.php:41
+msgid "User Auth Result"
+msgstr "Kết quả xác thực người dùng"
+
+#: device_log.php:42
+msgid "Device ID"
+msgstr "Mã thiết bị"
+
+#: device_log.php:43
+msgid "Device Check Result"
+msgstr "Kết quả kiểm tra thiết bị"
+
+#: device_log.php:45
+msgid "GET Parameters"
+msgstr "GET Parameters - Các thông số hàm Get"
+
+#: device_log.php:46
+msgid "Return Message"
+msgstr "Tin trả về"
+
+#: device_log.php:47
+msgid "Log Date"
+msgstr "Ngày ghi lịch sử "
+
+#: device.php:129 js/translatejs.php:78 syncme/device.php:129 device.php:132
+msgid "View"
+msgstr "Xem"
+
+#: device.php:130 js/translatejs.php:79 syncme/device.php:130 device.php:133
+msgid "Locate"
+msgstr "Vị trí"
+
+#: device.php:131 js/translatejs.php:80 syncme/device.php:131 device.php:134
+msgid "Modify"
+msgstr "Chỉnh sửa"
+
+#: device.php:132 js/translatejs.php:81 syncme/device.php:132 device.php:135
+msgid "Delete"
+msgstr "Xóa"
+
+#: device.php:145 device_register_manual.php:60 my_account.php:54
+#: password_recovery.php:68 syncme/device.php:145 syncme/my_account.php:28
+#: syncme/user_register.php:56 user_register_authentication.php:63
+#: user_register.php:56 device.php:148 device.php:155 user_register.php:37
+msgid "Reset"
+msgstr "Khởi tạo lại"
+
+#: device_register_manual.php:65 my_account.php:59
+#: password_recovery_authentication.php:105 password_recovery.php:77
+#: syncme/my_account.php:40 syncme/user_register.php:61
+#: ui_component/device_config_dialog.php:3 user_list.php:73
+#: user_register_authentication.php:72 user_register.php:61
+#: user_register_resend.php:34 password_recovery_authentication.php:97
+#: user_register.php:42
+msgid "Property"
+msgstr "Các thuộc tính"
+
+#: device_register_manual.php:66 my_account.php:60
+#: password_recovery_authentication.php:106 password_recovery.php:78
+#: syncme/my_account.php:41 syncme/user_register.php:62
+#: ui_component/device_config_dialog.php:4 user_list.php:74
+#: user_register_authentication.php:73 user_register.php:62
+#: user_register_resend.php:35 password_recovery_authentication.php:98
+#: user_register.php:43
+msgid "Content"
+msgstr "Nội dung"
+
+#: device_register_manual.php:69
+msgid "Type"
+msgstr "Chủng loại"
+
+#: device_register_manual.php:96
+msgid "Internal Port"
+msgstr "Internal Port"
+
+#: device_unknown.php:64
+msgid "Device Type"
+msgstr "Loại thiết bị"
+
+#: door_phone/door_phone_function.php:166 share_multiple_device.php:34
+#: share_multiple_device.php:76
+msgid "House No."
+msgstr "Nhà số"
+
+#: door_phone/door_phone_function.php:166 share_multiple_device.php:35
+#: share_multiple_device.php:77
+msgid "Account ID"
+msgstr "Mã tài khoản"
+
+#: door_phone/door_phone_function.php:166 share_multiple_device.php:36
+#: share_multiple_device.php:78
+msgid "Householder"
+msgstr "Chủ nhà"
+
+#: include/db_function.php:193 include/db_function.php:288
+#: include/db_function.php:434 include/db_function.php:199
+#: include/db_function.php:292 include/db_function.php:437
+msgid "The user name is duplicated."
+msgstr "Tên tài khoản bị trùng"
+
+#: include/index_title.php:314
+msgid "Imprint"
+msgstr "Imprint"
+
+#: include/mail_function.php:200 include/mail_function.php:82
+#, php-format
+msgid "Your <a href='%s'>%s</a>/ account '%s' has been created."
+msgstr "Tài khoản <a href='%s'>%s</a>/ '%s' khởi tạo thành công. "
+
+#: include/mail_function.php:201 include/mail_function.php:83
+msgid ""
+"You need to visit the confirmation address below within 48 hours to complete "
+"the account creation process:"
+msgstr ""
+"Bạn cần xác nhận bằng cách nhập và đường dẫn  sau trong vòng 48 giờ để hoàn "
+"tất thủ tục đăng kí"
+
+#: include/mail_function.php:203 include/mail_function.php:85
+msgid "Please click to verify your registration."
+msgstr "Vui lòng nhấp vào để xác nhận đơn đăng kí"
+
+#: include/mail_function.php:205 include/mail_function.php:87
+msgid ""
+"If you did not sign up for this account, this will be the only communication "
+"you will receive. All non-confirmed accounts are automatically deleted after "
+"48 hours, and no addresses are kept on file. We apologize for any "
+"inconvenience this correspondence may have caused, and we assure you that it "
+"was only sent at the request of someone visiting our site requesting an "
+"account."
+msgstr ""
+"Nếu bạn không đăng kí tài khoản, đây sẽ là thông báo duy nhất bạn nhận được. "
+"Tất cả các tài khoản không được xác nhận sẽ bị hủy trong vòng 48 giờ, và "
+"không có địa chỉ nào được lưu lại. Chúng tôi chân thành xin lỗi vì bất cứ sự "
+"bất tiện nào, chúng tôi cam kết thông báo chỉ được gửi khi có yêu cầu tạo "
+"tài khoản từ khách hàng đã vào trang web của chúng tôi. "
+
+#: include/mail_function.php:207 include/mail_function.php:242
+#: include/mail_function.php:89 include/mail_function.php:116
+msgid "Sincerely"
+msgstr "Chân thành"
+
+#: include/mail_function.php:208 include/mail_function.php:243
+#: include/mail_function.php:90 include/mail_function.php:117
+msgid "The %BRAND% Team"
+msgstr "The %BRAND% Team"
+
+#: include/mail_function.php:213 include/mail_function.php:95
+msgid "%BRAND% User Registration"
+msgstr "Tạo tài khoản cho %BRAND% "
+
+#: include/mail_function.php:236 include/mail_function.php:110
+#, php-format
+msgid "Your <a href='%s'>%s</a>/ account is '%s'.<br>"
+msgstr "Tài khoản <a href='%s'>%s</a>/ là '%s'.<br>"
+
+#: include/mail_function.php:237 include/mail_function.php:111
+msgid ""
+"You need to visit the recovery address below within 24 hours to complete the "
+"password recovery process:"
+msgstr ""
+"Bạn cần truy cập vào đường dẫn sau trong vòng 24 giờ để hoàn tất thủ tục "
+"khôi phục mật khẩu"
+
+#: include/mail_function.php:239 include/mail_function.php:113
+msgid "Please click to begin the password recovery process."
+msgstr "Vui lòng nhấp vào để tiến hành qui trình khôi phục mật khẩu"
+
+#: include/mail_function.php:241 include/mail_function.php:115
+msgid ""
+"If you did not request for password recovery, this will be the only "
+"communication you will receive. We apologize for any inconvenience this "
+"correspondence may have caused, and we assure you that it was only sent at "
+"the request of someone visiting our site requesting password recovery."
+msgstr ""
+"Nếu bạn không yêu cầu thực hiện qui trình khôi phục mật khẩu, đây sẽ là "
+"thông báo duy nhất bạn nhận được. Chúng tôi xin lỗi vì bất cứ sự bất tiện "
+"nào, và chúng tôi đảm bảo thông báo chỉ được gửi khi có khách hàng vào trang "
+"web và yêu cầu thực hiện qui trình khôi phục mật khẩu"
+
+#: include/tail.php:9 include/tail.php:16 js/translatejs.php:13
+#: js/translatejs.php:45 js/translatejs.php:74 js/translatejs.php:12
+msgid "OK"
+msgstr "Đồng ý"
+
+#: index.php:128 index.php:417 js/translatejs.php:34 js/translatejs.php:123
+msgid "Welcome"
+msgstr "Chào mừng"
+
+#: index.php:129 index.php:418
+#, php-format
+msgid "This is your %s times login."
+msgstr "Đây là đăng nhập thứ %s."
+
+#: index.php:136 index.php:449 js/translatejs.php:124
+msgid "Logout"
+msgstr "Đăng xuất"
+
+#: index.php:166 index.php:446 login.php:87 login.php:84
+msgid "Login"
+msgstr "Đăng nhập"
+
+#: index.php:258 index.php:238 iveda/index.php:252 js/translatejs.php:88
+msgid "Please use Chrome, Firefox, or Internet Explorer"
+msgstr "Vui lòng dùng Chrom, Firefox, hoặc Internet Explorer"
+
+#: index.php:319 index.php:309 iveda/index.php:323
+msgid "Cloud"
+msgstr "Cloud"
+
+#: index.php:320 index.php:310 iveda/index.php:324
+msgid "Playback"
+msgstr "Xem lại"
+
+#: index.php:321 device_list.php:146 index.php:311 index.php:430
+#: iveda/index.php:325
+msgid "Live View"
+msgstr "Xem trực tiếp"
+
+#: index.php:339 index.php:329 iveda/index.php:343
+msgid "Hour"
+msgstr "Giờ"
+
+#: index.php:340 index.php:330 iveda/index.php:344
+msgid "Day"
+msgstr "Ngày"
+
+#: index.php:341 index.php:331 iveda/index.php:345
+msgid "Week"
+msgstr "Tuần"
+
+#: index.php:448
+msgid "Quick Start"
+msgstr "Quick Start"
+
+#: index.php:465 index.php:489 index.php:461 iveda/index.php:420
+msgid "Matrix"
+msgstr "Matrix"
+
+#: index.php:466 index.php:462 iveda/index.php:421
+msgid "Map"
+msgstr "Bản đồ"
+
+#: index.php:492
+msgid "NVR"
+msgstr "NVR"
+
+#: index.php:495 js/translatejs.php:62 index.php:431
+msgid "Setting"
+msgstr "Cài đặt"
+
+#: index.php:506 js/translatejs.php:82 share_device.php:28 index.php:432
+#: share_device.php:27
+msgid "Share"
+msgstr "Chia sẻ"
+
+#: js/translatejs.php:7 js/translatejs.php:10 js/translatejs.php:97
+#: js/translatejs.php:6 js/translatejs.php:9
+msgid "Error while querying data, please try again later"
+msgstr ""
+"Có lỗi trong quá trình tìm kiếm dữ liệu, vui lòng thực hiện lại vào lúc khác."
+
+#: js/translatejs.php:8 js/translatejs.php:7
+msgid ""
+"We support event playback for 7 days. For events out of date, please check "
+"your cloud backup space or SD card in your camera"
+msgstr ""
+"Chúng tôi hỗ trợ việc xem lại sự kiện trong 7 ngày. Với các sự kiện không "
+"nằm trong thời gian trên, vui lòng xem ở bản lưu Cloud hay trên thẻ nhớ"
+
+#: js/translatejs.php:9 js/translatejs.php:8
+msgid ""
+"There was an error with playback file, please try again or check the camera"
+msgstr "Có lỗi trong quá trinh xem lại, vui lòng thử lại hoặc kiểm tra camera"
+
+#: js/translatejs.php:11 js/translatejs.php:10
+msgid ""
+"You need to login gmail account to view cloud playback, click ok after "
+"logging your account"
+msgstr ""
+"Cần phải đăng nhập bằng tài khoản Gmail để xem lại, nhấp OK sau khi đăng "
+"nhập vào tài khoản"
+
+#: js/translatejs.php:12 js/translatejs.php:75 js/translatejs.php:11
+msgid "Later"
+msgstr "Để sau"
+
+#: js/translatejs.php:14 js/translatejs.php:13
+msgid "Cloud mode is allowed to connect for 3 minutes"
+msgstr "Chế độ Cloud cho phép kết nối trong vòng 3 phút"
+
+#: js/translatejs.php:15 js/translatejs.php:65 js/translatejs.php:14
+msgid "Relay mode is allowed to connect for 2 minutes."
+msgstr "Chế độ phát lại được kết nối trong vòng 2 phút"
+
+#: js/translatejs.php:16 js/translatejs.php:15
+msgid "Already at the first video"
+msgstr "Đang xem video đầu tiên"
+
+#: js/translatejs.php:17 js/translatejs.php:16
+msgid "Already at the last video"
+msgstr "Đang xem Video cuối"
+
+#: js/translatejs.php:20
+msgid "Cannot view video?"
+msgstr "Không thể xem Video?"
+
+#: js/translatejs.php:21
+msgid "Click Here"
+msgstr "Nhấp vào đây"
+
+#: js/translatejs.php:22
+msgid "Please open this page on Windows/Mac platform"
+msgstr "Vui lòng truy cập vào trang này trên hệ thống Windows/MAC"
+
+#: js/translatejs.php:23
+msgid "You need to enable Java Applets to view video"
+msgstr "Bạn cần cho phép Java Applets để xem Video"
+
+#: js/translatejs.php:24
+msgid "Try Google"
+msgstr "Try Google"
+
+#: js/translatejs.php:25
+msgid "Reconnect"
+msgstr "Kết nối lại"
+
+#: js/translatejs.php:28 js/translatejs.php:104
+msgid "Please enter a valid name."
+msgstr "Vui lòng nhập vào tên đúng"
+
+#: js/translatejs.php:29
+msgid "Please select a owner."
+msgstr "Vui lòng chọn chủ nhà"
+
+#: js/translatejs.php:30
+msgid "Please enter a valid MAC address or service ID."
+msgstr "Vui lòng nhập địa chỉ MAC hay mã ID Dịch vụ hợp lệ."
+
+#: js/translatejs.php:31
+msgid "Please enter a valid IP or FQDN address."
+msgstr "Vui lòng nhập địa chỉ IP hay FQDN hợp lệ."
+
+#: js/translatejs.php:32
+msgid "Please enter a valid port."
+msgstr "Vui lòng nhập địa chỉ cổng Port hợp lệ."
+
+#: js/translatejs.php:33
+msgid "Latitude/Longitude Map Selector"
+msgstr "Chọn Bản đồ Kinh độ/Vĩ độ"
+
+#: js/translatejs.php:36
+msgid "No."
+msgstr "STT"
+
+#: js/translatejs.php:38
+msgid "Activate Code"
+msgstr "Mã kích hoạt"
+
+#: js/translatejs.php:40
+msgid ""
+"Authenticate your Google Drive to enjoy the free relay service as well as "
+"video backup over Cloud service."
+msgstr ""
+"Xác nhận Dịch vụ Google Drive để sử dung dịch vụ phát lại miễn phí và dịch "
+"vụ lưu video trên Cloud"
+
+#: js/translatejs.php:41
+msgid "Invalid MAC Address"
+msgstr "Địa chỉ MAC không hợp lệ"
+
+#: js/translatejs.php:42
+msgid "Invalid Active Code"
+msgstr "Mã kích hoạt không hợp lệ"
+
+#: js/translatejs.php:43
+msgid "Success"
+msgstr "Thành công"
+
+#: js/translatejs.php:44
+msgid "Internal Error"
+msgstr "Có lỗi"
+
+#: js/translatejs.php:46
+msgid "Advanced"
+msgstr "Mở rộng"
+
+#: js/translatejs.php:47
+msgid "Device List"
+msgstr "Danh sách thiết bị"
+
+#: js/translatejs.php:49
+msgid "Connect IP Camera"
+msgstr "Kết nối IP Camera"
+
+#: js/translatejs.php:50
+msgid ""
+"Please complete registration in 60 minutes after boot up your camera,<br /"
+">or you need to re-power the camera and complete registration process again."
+msgstr ""
+"Vui lòng hoàn tât thủ tục đăng kí trong 60 phút kể từ lúc khởi động camera, "
+"<br /> hoặc bạn cần khởi động lại camera và hoàn tất lại thủ tục đăng kí."
+
+#: js/translatejs.php:51
+msgid "Bind IP Camera"
+msgstr "Bind IP Camera"
+
+#: js/translatejs.php:52
+msgid "Browser"
+msgstr "Trình duyệt"
+
+#: js/translatejs.php:53
+msgid "Smart Phone"
+msgstr "Điện thoại thông minh"
+
+#: js/translatejs.php:54
+msgid "Auto Search"
+msgstr "Tự động dò tìm"
+
+#: js/translatejs.php:55
+msgid "DHCP"
+msgstr "DHCP"
+
+#: js/translatejs.php:59
+msgid "Lock"
+msgstr "Khóa"
+
+#: js/translatejs.php:60
+msgid "Signal"
+msgstr "Tín hiệu"
+
+#: js/translatejs.php:61
+msgid "FullScreen"
+msgstr "Toàn màn hình"
+
+#: js/translatejs.php:63
+msgid "Mute"
+msgstr "Im lặng"
+
+#: js/translatejs.php:64
+msgid "Refresh"
+msgstr "Làm mới"
+
+#: js/translatejs.php:66
+msgid "Cloud mode is allowed to connect for 3 minutes."
+msgstr "Chế độ Cloud được kết nối trong 3 phút"
+
+#: js/translatejs.php:67
+msgid "P2P initialize failed."
+msgstr "Khởi tạo kết nối P2P không thành công."
+
+#: js/translatejs.php:68
+msgid "There is a error happened, please reload page."
+msgstr "Nếu có lỗi xảy ra, vui lòng vào lại trang."
+
+#: js/translatejs.php:71
+msgid "Firmwawre Version"
+msgstr "Phiên bản phần mềm"
+
+#: js/translatejs.php:72
+msgid "Available Version"
+msgstr "Phiên bản đã có"
+
+#: js/translatejs.php:73
+msgid "Update"
+msgstr "Cập nhật"
+
+#: js/translatejs.php:85 js/translatejs.php:86
+msgid "We only support 32 bits browser"
+msgstr "Chúng tôi chỉ hỗ trợ trình duyệt 32 bits"
+
+#: js/translatejs.php:86 js/translatejs.php:87
+msgid "We only support Internet Explorer 8 or above"
+msgstr "Chúng tôi chỉ hỗ trợ Internet Explorer 8 trở lên"
+
+#: js/translatejs.php:87
+msgid "Please use Firefox, or Internet Explorer"
+msgstr "Vui lòng dùng Firefox hoặc Internet Explorer"
+
+#: js/translatejs.php:88
+msgid "Please use Firefox, or Safari"
+msgstr "Vui lòng dùng Firefox, hoặc Safari"
+
+#: js/translatejs.php:89 js/translatejs.php:90
+msgid "We only support Windows/Mac"
+msgstr "Chúng tôi chỉ hỗ trợ Windows/Mac"
+
+#: js/translatejs.php:90 js/translatejs.php:91
+msgid "Server encountering problems, please try again later"
+msgstr "Máy chủ đang gặp sự cố, vui lòng thử lại sau"
+
+#: js/translatejs.php:91 js/translatejs.php:92
+msgid "Please turn off Compatibility View"
+msgstr "Vui lòng tắt chế độ Compatibility View"
+
+#: js/translatejs.php:91 js/translatejs.php:92
+msgid "Find “Tool” menu"
+msgstr "Tìm “Tool” menu"
+
+#: js/translatejs.php:91 js/translatejs.php:92
+msgid "Select “Compatibility View Settings”"
+msgstr "Chọn “Compatibility View Settings”"
+
+#: js/translatejs.php:91 js/translatejs.php:92
+msgid "Unclick Display intranet sites in Compatibility View"
+msgstr ""
+"Bỏ chọn \"Unclick Display intranet sites\" trong \"Compatibility View\" "
+
+#: js/translatejs.php:92
+msgid ""
+"Since Chrome ended java support, we recommend you using  Firefox, Internet "
+"Explorer or Safari instead."
+msgstr ""
+"Do Chrome đã ngừng hỗ trợ Java, chúng tôi đề nghị bạn dùng Firefox, Internet "
+"Explorer hoặc Safari."
+
+#: js/translatejs.php:95
+msgid "Please get authorization first"
+msgstr "Vui lòng đăng kí để được cấp phép"
+
+#: js/translatejs.php:96
+msgid "Error while parsing data, please reload page"
+msgstr "Dữ liệu phân tích lỗi, vui lòng tải lại trang"
+
+#: js/translatejs.php:98
+msgid "Current camera has no content on the cloud storage"
+msgstr "Camera hiện không lưu dữ liệu trên Cloud"
+
+#: js/translatejs.php:101
+msgid "Do you want to delete this item?"
+msgstr "Bạn có thực sự muốn xóa không ?"
+
+#: js/translatejs.php:105
+msgid "Please enter a valid password."
+msgstr "Vui lòng nhập mật khẩu hợp lệ."
+
+#: js/translatejs.php:106 js/translatejs.php:119 js/translatejs.php:130
+msgid "Please confirm your password."
+msgstr "Vui lòng xác nhận lại mật khẩu."
+
+#: js/translatejs.php:107 js/translatejs.php:118 js/translatejs.php:129
+msgid "Please enter a valid email address."
+msgstr "Vui lòng nhập địa chỉ mail hợp lệ."
+
+#: js/translatejs.php:108
+msgid "Expire date cannot lesser than register date."
+msgstr "Ngày hết hạn phải sau ngày đăng kí."
+
+#: js/translatejs.php:109 password_recovery_authentication_mobile.php:124
+msgid "Your password is updated. Please login with the new password."
+msgstr "Mật khẩu đã được cập nhật. Vui lòng đăng nhập với mật khẩu mới."
+
+#: js/translatejs.php:112
+msgid "There was an error with your request. Please refresh the page"
+msgstr "Có lỗi xảy ra trong yêu cầu. Vui lòng tải lại trang."
+
+#: js/translatejs.php:113
+msgid "There was an error with your request. Please try again later"
+msgstr "Có lỗi xảy ra trong yêu cầu. Vui lòng thử lại sau."
+
+#: js/translatejs.php:116 js/translatejs.php:127
+msgid "Please agree to the terms of the privacy policy to continue."
+msgstr ""
+"Bạn được đề nghị chấp thuận các điều khoản về bảo mật cá nhân trước khi tiếp "
+"tục."
+
+#: js/translatejs.php:117 js/translatejs.php:128
+msgid "Please input your name."
+msgstr "Vui lòng nhập vào tên."
+
+#: js/translatejs.php:120 js/translatejs.php:131
+msgid "Please confirm your email address."
+msgstr "Vui lòng xác nhận lại địa chỉ email."
+
+#: js/translatejs.php:123 js/translatejs.php:116
+msgid "Already shared to this user."
+msgstr "Đã được chia sẻ cho người dùng này rồi."
+
+#: js/translatejs.php:124 js/translatejs.php:117
+msgid "Cannot share to yourself."
+msgstr "Không thể chia sẻ cho chính bạn."
+
+#: js/translatejs.php:125 js/translatejs.php:118
+msgid "Click OK to share the camera to your friend's account."
+msgstr "Nhấp OK để chia sẻ Camera"
+
+#: js/translatejs.php:126 js/translatejs.php:119
+msgid "Click ok to remove the account from share list."
+msgstr "Nhấp Ok để xóa tài khoản ra khỏi danh sách chia sẻ."
+
+#: js/translatejs.php:127 js/translatejs.php:120
+msgid "Remove failed."
+msgstr "Có lỗi trong quá trình gỡ bỏ."
+
+#: login.php:82 my_account.php:70 syncme/my_account.php:48
+#: syncme/user_register.php:65 user_list.php:55 user_list.php:90
+#: user_register.php:65 user_register_resend.php:38 login.php:79
+#: my_account.php:66 user_register.php:46
+msgid "Username"
+msgstr "Tên tài khoản"
+
+#: login.php:84 my_account.php:77
+#: password_recovery_authentication_mobile.php:102
+#: password_recovery_authentication.php:109 syncme/my_account.php:55
+#: syncme/user_register.php:71 user_list.php:56 user_list.php:96
+#: user_register_authentication.php:80 user_register.php:71 login.php:81
+#: my_account.php:73 password_recovery_authentication.php:101
+#: user_register.php:52
+msgid "Password"
+msgstr "Mật khẩu"
+
+#: login.php:86 login.php:83
+msgid "Forgot your password?"
+msgstr "Bạn quên mật khẩu ?"
+
+#: login.php:88 login.php:87
+msgid "Create Account"
+msgstr "Tạo tài khoản"
+
+#: login.php:89 login.php:90
+msgid "Google Login"
+msgstr "Đăng nhập bằng tài khoản Google"
+
+#: map_selector.php:118
+msgid "Address"
+msgstr "Địa chỉ"
+
+#: map_selector.php:120
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: mobile_initialize.php:23
+msgid "Invalid OEM ID."
+msgstr "Định danh nhà sản xuất OEM không hợp lệ"
+
+#: my_account.php:63 syncme/my_account.php:44 user_list.php:54
+#: user_list.php:83
+msgid "Group"
+msgstr "Nhóm"
+
+#: my_account.php:83 password_recovery_authentication_mobile.php:106
+#: password_recovery_authentication.php:116 syncme/my_account.php:61
+#: syncme/user_register.php:77 user_register.php:77 my_account.php:79
+#: password_recovery_authentication.php:108 user_register.php:58
+msgid "Confirm Password"
+msgstr "Xác nhận mật khẩu"
+
+#: my_account.php:92 syncme/my_account.php:67 syncme/user_register.php:83
+#: user_list.php:57 user_list.php:102 user_register.php:83
+#: user_register_resend.php:44 my_account.php:88 user_register.php:64
+msgid "Email"
+msgstr "Địa chỉ email"
+
+#: my_account.php:99 my_account.php:95
+msgid "Google Drive Email"
+msgstr "Địa chỉ Email Google Drive"
+
+#: my_account.php:106 syncme/my_account.php:74 user_list.php:58
+#: user_list.php:108
+msgid "Matrix View"
+msgstr "Xem nhiều Camera đồng thời"
+
+#: my_account.php:120 syncme/my_account.php:88 user_list.php:60
+#: my_account.php:106
+msgid "Login Date"
+msgstr "Ngày đăng nhập"
+
+#: oem/C05/privacy_policy.php:8 syncme/user_register.php:105
+#: user_register.php:105
+msgid "Privacy Policy"
+msgstr "Chính sách Bảo mật Cá nhân"
+
+#: p2p_diagnosis.php:146
+msgid ""
+"If you have trouble viewing video, please click \"Start\" to test your "
+"environment."
+msgstr "Nếu bạn gặp sự cố khi xem Video, vui lòng nhấp \"Start\" để kiểm tra."
+
+#: p2p_diagnosis.php:148
+msgid "Default"
+msgstr "Mặc định"
+
+#: p2p_diagnosis.php:150
+#, fuzzy
+msgid "Start"
+msgstr "Quick Start"
+
+#: p2p_diagnosis.php:160
+#, php-format
+msgid "Success! Your network will fully support %s services."
+msgstr "Thành công! Kết nối mạng hoàn toàn hỗ trợ dịch vụ %s"
+
+#: p2p_diagnosis.php:162
+msgid "There might be a problem with your network connection."
+msgstr "Chưa sẵn sàng. Vui lòng kiểm tra Kết nối mạng."
+
+#: p2p_diagnosis.php:163
+msgid ""
+"Click \"Report\" button to send us the technical information, and we will "
+"reply as soon as possible."
+msgstr ""
+"Nhấp \"Gửi thông báo\" để gửi thông tin kỹ thuật cho chúng tôi, và chúng tôi "
+"sẽ trả lời ngay khi có thể."
+
+#: p2p_diagnosis.php:164
+msgid "Report"
+msgstr "Gửi thông báo"
+
+#: p2p_diagnosis.php:166
+msgid "Java is required to run network test."
+msgstr "Cần cho phép Java để thực hiện kiểm tra Kết nối mạng"
+
+#: p2p_diagnosis.php:171
+#, fuzzy
+msgid "Message"
+msgstr "Return Message"
+
+#: p2p_diagnosis.php:174
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: p2p_diagnosis.php:175
+msgid "Company"
+msgstr "Công ty"
+
+#: p2p_diagnosis.php:176
+msgid "City"
+msgstr "Thành phố"
+
+#: p2p_diagnosis.php:177
+msgid "Country"
+msgstr "Quốc gia"
+
+#: p2p_diagnosis.php:178
+msgid "Client"
+msgstr "Tên khách hàng"
+
+#: p2p_diagnosis.php:179
+msgid "Feedback"
+msgstr "Nội dung phản ánh"
+
+#: p2p_diagnosis.php:182
+msgid "required fields."
+msgstr "Các thông tin cần điền"
+
+#: password_recovery_authentication_mobile.php:11
+#: password_recovery_authentication.php:17
+#: password_recovery_authentication.php:100
+#: password_recovery_authentication.php:18
+#: password_recovery_authentication.php:92
+msgid "Password Assistance"
+msgstr "Hỗ trợ liên quan đến Mật khẩu"
+
+#: password_recovery_authentication_mobile.php:98
+#: password_recovery_authentication.php:101
+#: password_recovery_authentication.php:93
+msgid "Create your new password"
+msgstr "Bạn quên mật khẩu?"
+
+#: password_recovery_authentication_mobile.php:103
+#: password_recovery_authentication.php:112 syncme/user_register.php:67
+#: syncme/user_register.php:73 user_register.php:67 user_register.php:73
+#: password_recovery_authentication.php:104 user_register.php:48
+#: user_register.php:54
+msgid "4 – 32 alphabet or numeric characters"
+msgstr "4 – 32 chữ cái hay chữ số"
+
+#: password_recovery_authentication_mobile.php:109
+#: password_recovery_authentication.php:122 syncme/user_register.php:95
+#: user_register.php:95 password_recovery_authentication.php:114
+#: user_register.php:76
+msgid "Security Image"
+msgstr "Ảnh xác thực"
+
+#: password_recovery_authentication_mobile.php:116
+#: password_recovery_authentication.php:126 syncme/user_register.php:99
+#: user_register.php:99 password_recovery_authentication.php:118
+#: user_register.php:80
+msgid "Refresh Image"
+msgstr "Tải lại ảnh"
+
+#: password_recovery.php:72
+msgid ""
+"If you have lost your account password, simply enter your username below."
+msgstr "Nếu bạn quên mật khẩu, chỉ cần điền tên tài khoản vào ô dưới đây"
+
+#: password_recovery.php:73
+msgid "The instructions will be sent to you register email."
+msgstr "Qui trình sẽ được gửi đến email đã đăng ký của bạn."
+
+#: password_recovery.php:81
+msgid "Email or Username"
+msgstr "Email hay Tên tài khoản"
+
+#: password_recovery.php:89
+msgid ""
+"You will receive an e-mail from us with instructions for resetting your "
+"password."
+msgstr "Bạn sẽ nhận được email với qui trình khởi tạo lại mật khẩu."
+
+#: password_recovery.php:90
+msgid "If you don't receive this e-mail, please check your junk mail folder."
+msgstr ""
+"Nếu bạn không nhận được email, vui lòng kiểm tra lại thư mục email rác."
+
+#: share_device.php:23 share_device.php:22
+msgid "Share to"
+msgstr "Chia sẻ cho"
+
+#: share_device.php:32 share_multiple_device.php:72 share_device.php:31
+msgid "This camera is being shared with:"
+msgstr "Camera này được chia sẻ cho:"
+
+#: share_multiple_device.php:26
+msgid "First-time uploading, please click & download \"Doc. template\"."
+msgstr "Với lần đầu tải về, vui lòng nhấp chuột và tải về \"Mẫu văn bản\""
+
+#: share_multiple_device.php:27
+msgid "Click \"Download account ID doc.\" to update previous doc."
+msgstr "Nhấp \"Tải về văn bản Tên tài khoản - ID\" để cập nhật văn bản trước."
+
+#: share_multiple_device.php:28 share_multiple_device.php:58
+msgid "Doc. template"
+msgstr "Mẫu văn bản"
+
+#: share_multiple_device.php:31
+msgid "Fill in House number/ Account ID/ Householder as provided columns."
+msgstr "Điền vào số nhà/Tên tài khoản/Chủ nhà theo vào các ô"
+
+#: share_multiple_device.php:39
+msgid "Eric"
+msgstr "Eric"
+
+#: share_multiple_device.php:42
+msgid "Ex."
+msgstr "Ex."
+
+#: share_multiple_device.php:45
+msgid "Click and Upload the document."
+msgstr "Nhấp và Tải lên tài liệu"
+
+#: share_multiple_device.php:46 share_multiple_device.php:65
+#: translation_manage.php:19 translation_manage.php:71
+msgid "Upload"
+msgstr "Tải lên"
+
+#: share_multiple_device.php:55
+msgid "Upload residential account document to share:"
+msgstr "Tải lên các  văn bản để chia sẻ:"
+
+#: share_multiple_device.php:62
+msgid "Download account ID doc"
+msgstr "Tải xuống văn bản tài khoản ID"
+
+#: syncme/user_register.php:89 user_register.php:89 user_register.php:70
+msgid "Confirm Email"
+msgstr "Email xác nhận"
+
+#: syncme/user_register.php:104 user_register.php:104
+msgid "I agree to the Privacy Policy’s term."
+msgstr "Tôi đồng ý với các điều khoản Bảo mật Cá nhân"
+
+#: translation_manage.php:72 js/translatejs.php:83
+msgid "Download"
+msgstr "Tải xuống"
+
+#: ui_component/device_config_dialog.php:35
+msgid "Service Type/Device Type"
+msgstr "Loại Dịch vụ/Loại Thiết bị"
+
+#: ui_component/device_config_dialog.php:48
+msgid "Video"
+msgstr "Video"
+
+#: ui_component/device_config_dialog.php:50
+msgid "Quality:"
+msgstr "Chất lượng:"
+
+#: ui_component/device_config_dialog.php:52
+msgid "High"
+msgstr "Cao"
+
+#: ui_component/device_config_dialog.php:54
+msgid "Medium"
+msgstr "Vừa"
+
+#: ui_component/device_config_dialog.php:56
+msgid "Low"
+msgstr "Thấp"
+
+#: ui_component/user_register_notice.php:3
+msgid "One more step to go..."
+msgstr "Thêm một bước nữa thôi ..."
+
+#: ui_component/user_register_notice.php:5
+msgid ""
+"We've sent an email to <span id='reg_email-span'></span>, to verify your "
+"account."
+msgstr ""
+"Chúng tôi đã gửi email đến  <span id='reg_email-span'></span>, để xác nhận "
+"tài khoản của bạn."
+
+#: ui_component/user_register_notice.php:6
+msgid "Please check your inbox and click on the confirmation link."
+msgstr "Vui long kiểm tra hộp thư và nhấp và đường dẫn xác nhận"
+
+#: ui_component/user_register_notice.php:10
+msgid "If you have not received the email"
+msgstr "Nếu bạn không nhận được email:"
+
+#: ui_component/user_register_notice.php:11
+msgid "Try the following:"
+msgstr "Hãy thử các cách sau:"
+
+#: ui_component/user_register_notice.php:13
+msgid "Check your junk mail folder or spam filter."
+msgstr "Kiểm tra thư mục mail rác hay mail quấy rối."
+
+#: ui_component/user_register_notice.php:14
+#, php-format
+msgid "Try resending the email from %s here %s."
+msgstr "Thử gửi lại email %s here %s."
+
+#: ui_component/user_register_notice.php:17
+msgid ""
+"Please notice that the confirmation link will be valid only for 24 hours."
+msgstr "Chú ý: đường dẫn xác nhận chỉ có hiệu lực trong 24 giờ."
+
+#: user_register_authentication.php:52
+msgid "There is no matching user ID or expired , please re-register again"
+msgstr ""
+"Không đúng mã người dùng - ID hoặc phiên làm việc hết hạn, vui lòng đăng "
+"nhập lại"
+
+#: user_register_authentication.php:67
+msgid "Please enter your password."
+msgstr "Vui lòng xác nhận mật khẩu"
+
+#: user_register_authentication.php:68
+msgid "Please login to finalize account activation."
+msgstr "Vui lòng đăng nhập để hoàn tất thủ tục kích hoạt tài khoản."
+
+#: user_register_authentication.php:86
+msgid "Autnentication Code"
+msgstr "Mã xác thực Google"
+
+#: user_register_resend.php:29
+msgid ""
+"Please help to fill out the table below and click the resend button. We'll "
+"send a confirmation email to you."
+msgstr ""
+"Vui lòng điền thông tin và bảng sau và nhấp vào nút gửi. Chúng tôi sẽ gửi "
+"email xác nhận cho bạn."
+
+#: user_register_resend.php:50
+msgid "Resend"
+msgstr "Gửi lại"
+
+#: backstage_login.php:32
+msgid "Too many failed login attempts. Please try again in 10 minutes."
+msgstr "Đăng nhập lỗi nhiều lần. Vui lòng thử lại sau 10 phút"
+
+#: backstage_package.php:51
+msgid "Authentication failed."
+msgstr "Lỗi xác thực."
+
+#: device_matrix.php:155 shared_matrix.php:154
+msgid "Enlarge"
+msgstr "Mở rộng"
+
+#: device_matrix.php:178 iveda/device_matrix.php:182
+msgid "Auto Cycle"
+msgstr "Tự xác định vị trí"
+
+#: download_recording.php:19
+msgid "Download recording for"
+msgstr "Tải về cho"
+
+#: include/mail_class.php:73
+msgid "Invalid receiver email"
+msgstr "Mã kích hoạt sai"
+
+#: iveda/device_matrix.php:187 iveda/shared_matrix.php:182
+msgid "Close"
+msgstr "Đóng"
+
+#: js/translatejs.php:17
+msgid "Invalid event"
+msgstr "Mã kích hoạt sai "
+
+#: js/translatejs.php:89
+msgid "Please use Chrome, Firefox, or Safari"
+msgstr "Vui lòng dùng Chrome, Firefox, hoặc Safari"
+
+#: ui_component/schedule_config_dialog.php:3
+msgid "Schedule Recording"
+msgstr "Lưu theo lịch"
+
+#: ui_component/schedule_config_dialog.php:6
+msgid "Everyday"
+msgstr "Mỗi ngày"
+
+#: ui_component/schedule_config_dialog.php:7
+#: ui_component/schedule_config_dialog.php:13
+#: ui_component/schedule_config_dialog.php:19
+msgid "Day time"
+msgstr "Ban ngày"
+
+#: ui_component/schedule_config_dialog.php:8
+#: ui_component/schedule_config_dialog.php:14
+#: ui_component/schedule_config_dialog.php:20
+msgid "Night time"
+msgstr "Ban đêm"
+
+#: ui_component/schedule_config_dialog.php:12
+msgid "Weekday"
+msgstr "Ngày làm việc"
+
+#: ui_component/schedule_config_dialog.php:18
+msgid "During the weekend"
+msgstr "Cuối tuần"
+
+#: index.php:252
+msgid "Support"
+msgstr "Hỗ trợ"
+
+#: index.php:96
+msgid "PLEASE SIGN IN"
+msgstr "MỜI ĐĂNG NHẬP"
+
+#: index.php:455
+msgid "Select date:"
+msgstr "Chọn ngày:"
+
+#: index.php:455
+msgid "Play back"
+msgstr "Xem lại"
+
+#: device_list.php:144
+msgid "SETTINGS"
+msgstr "CÀI ĐẶT"
+
+#: password_recovery.php:74
+msgid "The instructions will be sent to your register email."
+msgstr "Hướng dẫn sẽ được gởi đến email mà bạn dùng để đăng kí dịch vụ."
+
+#, fuzzy
+#~ msgid ""
+#~ "If you did not sign up for this account, this will be the only "
+#~ "communication you will receive. All non-confirmed accounts are "
+#~ "automatically deleted after 48 hours, and no addresses are kept on file. "
+#~ "We apologize for any incovenience this correspondence may have caused, "
+#~ "and we assure you that it was only sent at the request of someone "
+#~ "visiting our site requesting an account."
+#~ msgstr ""
+#~ "If you did not sign up for this account, this will be the only "
+#~ "communication you will receive. All non-confirmed accounts are "
+#~ "automatically deleted after 48 hours, and no addresses are kept on file. "
+#~ "We apologize for any inconvenience this correspondence may have caused, "
+#~ "and we assure you that it was only sent at the request of someone "
+#~ "visiting our site requesting an account."
+
+#, fuzzy
+#~ msgid ""
+#~ "If you did not request for password recovery, this will be the only "
+#~ "communication you will receive. We apologize for any incovenience this "
+#~ "correspondence may have caused, and we assure you that it was only sent "
+#~ "at the request of someone visiting our site requesting password recovery."
+#~ msgstr ""
+#~ "If you did not request for password recovery, this will be the only "
+#~ "communication you will receive. We apologize for any inconvenience this "
+#~ "correspondence may have caused, and we assure you that it was only sent "
+#~ "at the request of someone visiting our site requesting password recovery."
+
+#~ msgid "Your password has been sent to your register email."
+#~ msgstr "Your password has been sent to your register email."
+
+#~ msgid "Help"
+#~ msgstr "Help"
+
+#~ msgid "Network Test"
+#~ msgstr "Network Test"
+
+#~ msgid ""
+#~ "Limited connection! For better performance, please check your firewall "
+#~ "settings."
+#~ msgstr ""
+#~ "Limited connection! For better performance, please check your firewall "
+#~ "settings."
+
+#~ msgid "Personal Information Collection"
+#~ msgstr "Personal Information Collection"
+
+#~ msgid ""
+#~ "I have read and fully understood the contents of this “Personal "
+#~ "Information collection” and hereby consent to its contents."
+#~ msgstr ""
+#~ "I have read and fully understood the contents of this “Personal "
+#~ "Information collection” and hereby consent to its contents."
+
+#~ msgid "Purpose and use of personal information"
+#~ msgstr "Purpose and use of personal information"
+
+#~ msgid ""
+#~ "The company use the information collected from the services to provide, "
+#~ "maintain, protect and improve service, and to protect our users."
+#~ msgstr ""
+#~ "The company use the information collected from the services to provide, "
+#~ "maintain, protect and improve service, and to protect our users."
+
+#~ msgid "Personal information collected from your use of service"
+#~ msgstr "Personal information collected from your use of service"
+
+#~ msgid ""
+#~ "The company collects personal information for users using service "
+#~ "application includes"
+#~ msgstr ""
+#~ "The company collects personal information for users using service "
+#~ "application includes"
+
+#~ msgid "Personal information: E-mail address, IP information."
+#~ msgstr "Personal information: E-mail address, IP information."
+
+#~ msgid "Period of possession for use of personal information"
+#~ msgstr "Period of possession for use of personal information"
+
+#~ msgid ""
+#~ "The company collects and uses your personal information to provide "
+#~ "service application. All information will be retained for as long as user "
+#~ "a/c is active or needed to provide to your service. You can contact us "
+#~ "via “contact us” page to delete a/c and personal information if you no "
+#~ "longer use our service."
+#~ msgstr ""
+#~ "The company collects and uses your personal information to provide "
+#~ "service application. All information will be retained for as long as user "
+#~ "a/c is active or needed to provide to your service. You can contact us "
+#~ "via “contact us” page to delete a/c and personal information if you no "
+#~ "longer use our service."
+
+#~ msgid "This is your %s1% times login."
+#~ msgstr "This is your %s1% times login."
+
+#~ msgid "My Account"
+#~ msgstr "My Account"
+
+#~ msgid "Filter"
+#~ msgstr "Filter"
+
+#~ msgid "Favorite"
+#~ msgstr "Favorite"
+
+#~ msgid "Control Center"
+#~ msgstr "Control Center"
+
+#~ msgid "Register Device"
+#~ msgstr "Register Device"
+
+#~ msgid "Map View"
+#~ msgstr "Map View"
+
+#~ msgid "Personal Device"
+#~ msgstr "Personal Device"
+
+#~ msgid "Central Management"
+#~ msgstr "Central Management"
+
+#~ msgid "User List"
+#~ msgstr "User List"
+
+#~ msgid "Unknown Device List"
+#~ msgstr "Unknown Device List"
+
+#~ msgid "Translation Manage"
+#~ msgstr "Translation Manage"
+
+#~ msgid "Grid"
+#~ msgstr "Grid"
+
+#~ msgid "Topology"
+#~ msgstr "Topology"
+
+#~ msgid "Ok"
+#~ msgstr "Ok"
+
+#~ msgid "The password is "
+#~ msgstr "The password is "
+
+#~ msgid ""
+#~ "Relay mode is allowed to connect for 1 minute. You may try Google drive "
+#~ "for cloud backup"
+#~ msgstr ""
+#~ "Relay mode is allowed to connect for 1 minute. You may try Google drive "
+#~ "for cloud backup"
+
+#~ msgid "This is your "
+#~ msgstr "This is your xxx times login"

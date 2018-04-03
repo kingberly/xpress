@@ -1,0 +1,84 @@
+{
+  "camerasetup": {
+    "title": "Cài đặt camera",
+    "faqlist": [
+      {
+        "Question": "Tôi làm thế nào để cài đặt một camera mới?",
+        "Answer": "Hãy tham khảo mục <i>Thêm camera của bạn</i> trong hướng dẫn sử dụng camera."
+      },
+      {
+        "Question": "Làm thế nào để cài đặt ghi hình trên camera?",
+        "Answer": "Camera của bạn được cấu hình mặc định để ghi hình 24/7. Để thay đổi số ngày lưu trữ video trên mạng, hãy liên hệ nhà cung cấp dịch vụ. "
+      },
+      {
+        "Question": "Tôi có thể di chuyển camera đến vị trí khác trong nhà hoặc văn phòng được không?",
+        "Answer": "Được, sau khi camera được cài đặt thành công trên VNPT Cam, bạn có thể di chuyển camera đến bất kì vì trí nào miễn có nguồn điện và kết nối internet."
+      },
+      {
+        "Question": "Hệ thống sử dụng port nào để camera hoạt động?",
+        "Answer": "https 443, camera 50000...(tùy thuộc vào số lượng), HTTP streaming 5544"
+      },
+      {
+        "Question": "Làm thế nào để cấu hình wifi cho camera?",
+        "Answer": "Hãy tham khảo mục Cài đặt wifi trong hướng dẫn sử dụng."
+      },
+      {
+        "Question": "Địa chỉ MAC trên camera là gì?",
+        "Answer": "Địa chỉ MAC của camera có thể tìm thấy ở phía sau camera, hoặc truy cập vào mục <strong>Cài đặt</strong> trên website VNPT Cam."
+      },
+      {
+        "Question": "Địa chỉ MAC trên camera là gì?",
+        "Answer": "Để truy cập vào mục cài đặt riêng của từng camera, nhấn vào <strong>Cài đặt -->  biểu tượng</strong> chỉnh sửa thiết bị để cài đặt cho camera mong muốn."
+      }
+    ]
+  },
+  "remoteAccess": {
+    "title": "Truy cập từ xa: Web và Thiết bị di động ",
+    "faqlist": [
+      {
+        "Question": "Ứng dụng điện thoại đã có sẳn của VNPT Cam",
+        "Answer": "VNPT Cam cho iPhone, iPad và iPod Touch (iOS)iTunes App Store: <a href='https://itunes.apple.com/vn/app/ivedaxpress/id1114416250?mt=8' target='_blank'>https://itunes.apple.com/vn/app/ivedaxpress/id1114416250?mt=8</a><br/>VNPT Cam cho điện thoại và các thiết bị dùng Android <a href='https://play.google.com/store/apps/details?id=com.iveda.cloudnvr' target='_blank'>https://play.google.com/store/apps/details?id=com.iveda.cloudnvr</a>"
+      },
+      {
+        "Question": "Có thể xem đồng thời bao nhiêu camera?",
+        "Answer": "Trên trang VNPT Cam, bạn có thể xem cùng lúc 6 camera. "
+      },
+      {
+        "Question": "Yêu cầu phần cứng máy tính để truy cập vào VNPT Cam?",
+        "Answer": "CPU:Intel Atom 330 hoặc hơn 1M cache 1.6GHz 533MHz FSB Hệ Điều Hành:Windows hoặc Mac OSX Độ phân giải màn hình:1280 X 720 Trình duyệt :Internet Explorer Firefox hoặc Safari phiên bản Jave:Java 7u11 hoặc hơn, Để có nhiều thông tin hơn hãy tham khảo mục thông số kĩ thuật trong tài liệu hướng dẫn sử dụng."
+      }
+    ]
+  },
+  "CameraService": {
+    "title": "Thông tin Camera và Dịch vụ",
+    "faqlist": [
+      {
+        "Question": "Băng thông VNPT Cam cần để dùng dịch vụ là bao nhiêu?",
+        "Answer": "Mỗi camera cần đường up link khoảng 0.2 Mbps tùy theo độ phân giải video. Các thiết bị khác trong mạng cũng sẽ dùng cùng tốc độ upload này."
+      },
+      {
+        "Question": "Làm thế nào để thay đổi email đăng kí",
+        "Answer": "Hiện tại, không thể thay đổi email đăng kí, chỉ có thể tạo một account mới."
+      },
+      {
+        "Question": "Có thể sử dụng camera ở ngoài Việt Nam được không?",
+        "Answer": "Được, sau khi đã được thêm vào tài khoản của bạn, camera có thể hoạt động ở bất kì nơi nào chỉ cần kết nối internet."
+      },
+      {
+        "Question": "Tôi có thể chia sẽ camera và video cho người khác không?",
+        "Answer": "Có, bạn có thể chia sẽ xem trực tiếp hoặc xem video đã ghi hình từ camera của bạn cho người dùng khác của VNPT Cam. Nếu chưa đăng kí tài khoản, người dùng có thể đăng kí tại website <a href='https://camera.vinaphone.vn' target='_blank'>https://camera.vinaphone.vn</a> và nhấn 'Tạo tài khoản'<div class='list'><p>Để chia sẽ camera với người dùng khác:</p>Đến mục <strong>Cài Đặt</strong><br />Nhấn vào nút <strong>Chia sẽ</strong> của mỗi camera<br />Trong mục Chia sẽ, hãy điền tên tài khoản của người dùng khác mà bạn muốn chia sẽ <br />Nhấn <strong>Chia sẽ</strong><p>Khi người dùng được chia sẽ truy cập vào VNPT Cam, họ có thể nhấn vào menu <strong>Chia Sẽ</strong> trên trang chủ để xem camera. Họ chỉ có thể truy cập vào các mục <strong>Xem trực tiếp</strong> và các video được ghi hình trước đó trên camera</p></div>"
+      }
+
+    ]
+  },
+  "Troubleshooting": {
+    "title": "Xử lí lỗi",
+    "faqlist": [
+      {
+        "Question": "Wifi bị thay đổi, làm thế nào để thay đổi thông tin wifi trên camera?",
+        "Answer": "Bạn cần kết nối camera đến wireless router bằng cáp mạng, sau khi tắt/mở lại camera, bạn có thể truy cập vào camera trên website  <a href='https://camera.vinaphone.vn' target='_blank'>camera.vinaphone.vn</a> , ở đây sẽ có mục để thay đổi cấu hình wifi."
+      }
+ 
+    ]
+  }
+}

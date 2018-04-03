@@ -1,0 +1,116 @@
+<?php
+/****************
+ *Validated on Jun-21,2017,
+ * apk auto download page, filename set as apk name to work
+ *Writer : JinHo Chang   
+*****************/
+$ver="1.2";
+//$identifier="tw.gov.tycg.tymobileviewer";
+//$identifier="rpic.taipei";
+$identifier=$_SERVER['SERVER_NAME'];
+$protocol = "https://"; //ios 
+$appname=explode(".",$_SERVER['PHP_SELF']); //xxx.plist.php
+$filename="";
+for ($i=0;$i<sizeof($appname)-2;$i++)
+{
+  $filename.=$appname[$i].".";
+}
+$filename=rtrim($filename,".");
+$title=explode("/",$filename)[1];  
+$dlurl=$protocol.$_SERVER['HTTP_HOST'].$filename.".ipa";
+//header('Content-type: application/x-plist'); //if not cc
+ 
+////same as rpic.php access counter
+define("LOG_PATH","/var/tmp/");
+define("LOG_FILE",basename($_SERVER["SCRIPT_FILENAME"], '.php').".dat");
+
+function fixme() //fix old date error once
+{
+  $files = scandir(LOG_PATH, SCANDIR_SORT_ASCENDING);
+  for($i=0;$i<sizeof($files);$i++){//check filemdate
+    if ( (preg_match("/.dat.[0-9]{4}(0[1-9]|1[0-2])$/",$files[$i])) ){
+      $filecc = end(explode(".",$files[$i]));
+      $realfiledate=date("Ym",filemtime(LOG_PATH.$files[$i]));
+      if ($filecc == $realfiledate) break; //alrady fixed
+      $fileprefix = rtrim($files[$i],$filecc); //trim date=> file.dat.
+      exec("mv ".LOG_PATH.$files[$i]." ".LOG_PATH.$fileprefix.$realfiledate); 
+     }   
+  }
+}
+//fixme();
+if (file_exists(LOG_PATH.LOG_FILE)){
+  //echo "file exist";
+  $lastCount=file_get_contents(LOG_PATH.LOG_FILE);
+  $filedate=filemtime(LOG_PATH.LOG_FILE);
+  $file_mdate=date("Ym",$filedate); //date("Ym");
+  $lastCountDate=date("Y-m-d H:i:s",$filedate);
+  if( date("n")!=date("n",$filedate) ){ //check if file date MONTH and current date 1-12  different
+    exec("mv ".LOG_PATH.LOG_FILE." ".LOG_PATH.LOG_FILE.".".$file_mdate);
+    exec(" echo '0' > ".LOG_PATH.LOG_FILE);
+    chmod(LOG_PATH.LOG_FILE,0777);
+  } 
+}else{
+  //echo "file NOT exist!".LOG_FILE;
+    exec(" echo '0' > ".LOG_PATH.LOG_FILE);
+    chmod(LOG_PATH.LOG_FILE,0777);  
+}
+
+if (isset($_REQUEST['cc']))
+{
+  if ($_REQUEST['cc']==""){
+    if (file_exists(LOG_PATH.LOG_FILE))
+      die(file_get_contents(LOG_PATH.LOG_FILE));
+  }else{
+    if (file_exists(LOG_PATH.LOG_FILE.".".$_REQUEST['cc']))
+      die(file_get_contents(LOG_PATH.LOG_FILE.".".$_REQUEST['cc']));
+  }    
+  die("0");
+}
+else //new added for ipa
+  header('Content-type: application/x-plist');
+
+
+function incrementFile (){
+  $f = fopen(LOG_PATH.LOG_FILE, "r+") or die("Unable to open file!");
+  // We get the exclusive lock
+  if (flock($f, LOCK_EX)) { 
+    $counter = (int) fgets ($f); // Gets the value of the counter
+    rewind($f); // Moves pointer to the beginning
+    fwrite($f, ++$counter); // Increments the variable and overwrites it
+    fclose($f); // Closes the file
+    flock($fp, LOCK_UN); // Unlocks the file for other uses
+  }
+}
+incrementFile(); 
+?>  
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>assets</key>
+			<array>
+				<dict>
+					<key>kind</key>
+					<string>software-package</string>
+					<key>url</key>
+					<string><?php echo $dlurl;?></string>
+				</dict>
+			</array>
+			<key>metadata</key>
+			<dict>
+				<key>bundle-identifier</key>
+					<string><?php echo $identifier;?></string>
+				<key>bundle-version</key>
+					<string><?php echo $ver;?></string>
+				<key>kind</key>
+				<string>software</string>
+				<key>title</key>
+					<string><?php echo $title;?></string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

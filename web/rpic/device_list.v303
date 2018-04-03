@@ -1,0 +1,194 @@
+<?php
+include_once( "./include/global.php" );
+include_once( "./include/utility.php" );
+include_once( "./include/index_title.php" );
+if (!IsUserLoggedIn()) {header('Location: login.php'); exit;}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Device List</title>
+<?php require( "./include/common_css_include.php" ); ?>
+<?php require( "./include/common_js_include.php" ); ?>
+<link href="css/device_list.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="<?php echo $oem_style_list['css']['pagelist']; ?>" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="shadowbox-3.0.3/shadowbox.css" rel="stylesheet" type="text/css" charset="utf-8">
+<script type="text/javascript" src="js/panel.js"></script>
+<script type="text/javascript" src="js/googleRelay.js?20120522"></script>
+<script type="text/javascript" src="js/device_common.js?20140331"></script>
+<script type="text/javascript" src="js/device_list.js?20120523"></script>
+<script type="text/javascript" src="shadowbox-3.0.3/shadowbox.js"></script>
+<script type="text/javascript" src="js/pagelist.js"></script>
+<script type="text/javascript">
+	// get user name
+	var user_name = '<?php if (isset($_SESSION["google_openid"])) echo $_SESSION["reg_email"]; else echo $_SESSION["user_name"]; ?>';
+	var user_id = '<?php echo $_SESSION["user_id"];?>';
+	var request_device_type = "<?php if (isset($_SESSION["request_device_type"])) echo $_SESSION["request_device_type"]; else echo "";?>";
+	var request_service_type = "<?php if (isset($_SESSION["request_service_type"])) echo $_SESSION["request_service_type"]; else echo "camera";?>";
+	var checkdevice = "<?php if (isset($_GET["checkdevice"])) echo $_GET["checkdevice"]; else echo "";?>";
+	relayVar.auth = <?php if (isset($_SESSION["refresh_token"]) && $_SESSION["refresh_token"]!="") {$hasGoogleAuth = true; echo "true";} else {$hasGoogleAuth = false; echo "false";}?>;
+	var autobinding_cid = "<?php echo $oem_style_list['autobinding']?>";
+	try{
+		parent.relayVar.auth = relayVar.auth;
+	}catch(err){}
+	
+	$(function(){	
+		order_by = "device_share.owner_id, device.id";
+		asc_order = "asc";
+
+		InitialButton();	
+		
+		
+		// mode
+		//mode = '<?php if (isset($_GET["mode"])) echo $_GET["mode"]; else echo "public"; ?>';
+		//jinho:pulic disable features modify/delete/share
+		mode = '<?php echo "rpic"; ?>';
+		
+		// get if need to open device.php by default
+		var default_page_no = '<?php echo $_GET["page_no"]; ?>';
+		if( default_page_no != '' )
+		{
+			currentpage = parseInt(default_page_no);
+			$('input#current_page').val(default_page_no);
+		}
+		var default_device_id = '<?php echo $_GET["device_id"]; ?>';
+		var default_tab = '<?php echo $_GET["tab"]; ?>';
+
+		// setup service type options
+		SetupServiceTypeOptions();
+		
+		// display data
+		RefreshDisplay( default_device_id, default_tab );
+
+		// setup datetime poicket
+		SetupDatetimePicker();
+
+		// set map selector
+		SetupMapSelector();	
+		
+		$('#whole_button_cover').css('margin-top',"411px")
+		
+		if (mode!="all") $('#owner_tr').css('display','none');
+		
+		if ($.browser.msie){
+			$('#device_list_table').find('th').each(function(){
+				switch($(this).attr('column_id')){
+					case "6":
+						$(this).html('Service<br> Type');
+					break;
+					case "query_geo_locate":
+						$(this).html('Auto<br> Locate');
+					break;
+					case "public_status":
+						$(this).html('Public<br> Device');
+					break;
+					case "position":
+						$(this).html('Device<br> Matrix');
+					break;
+					case "favorite":
+						$(this).html('My<br> Favorite');
+					break;
+				}
+			});
+		}
+		
+		
+		ActiveShadowBoxInit();
+		//setTimeout("checkDeviceCount();",700);
+	});
+</script>
+</head>
+<body>
+<div id="toolbar_div" >
+	<div class="toolbarL">
+		<div class="btn_plus" onClick='OpenActiveBox();' id="add-btn" style="display:none;" title="<?php echo _("Add"); ?>" /></div> <!--ModifyDevice(-1);-->
+		<div class="btn_plus" onClick='ModifyDevice(-1);' id="add-btn-old" style="display:none;" title="<?php echo _("Add"); ?>" /></div>
+		<div class="<?php if ($hasGoogleAuth) echo "btn_plus_google opacity_50"; else echo "btn_plus_google"; ?>" onClick='<?php //if (!$hasGoogleAuth)
+		echo "OpenGoogleAuthBox();"; ?>' id="google-auth-btn" title="<?php echo _("Google Authentication"); ?>" /></div>
+    </div>
+    <div class="toolbarR">
+    		<!--jinho rpic disable all-->
+        <!--a href="device_list.php?mode=<?php if(isset($_GET["mode"])) echo $_GET["mode"]; else echo "public"; ?>"-->
+        <a href="device_list.php?mode=<?php echo "rpic"; ?>">
+            <div class="btn_sharef btn_sharef_active">
+                <?php echo _("Device"); ?>
+            </div>
+        </a>
+        <a href="my_account.php?mode=<?php if(isset($_GET["mode"])) echo $_GET["mode"]; else echo "public"; ?>">
+            <div class="btn_sharef">
+                <?php echo _("Account"); ?>
+            </div> 
+        </a>
+    </div>
+</div>
+<div class="bg_div" >
+    <div id="device_list_cover">
+        <div id="device_list" class="left_list">
+            
+            <table class="layouttable_2" border="1" cellspacing="1" cellpadding="1" id="device_list_table">
+                <tr>
+					<?php 
+					$camera_filter_style = "";
+					if ($_SESSION["request_service_type"]=="camera") $camera_filter_style = "off"; 
+					?>
+                    <!--th column_id="id" class="_btn_sort" style="width:7px;" ><?php echo _("ID"); ?></th-->
+                    <th column_id="device.name" class="_btn_sort" order="asc" style="width:60px;"><?php echo _("Name"); ?></th>
+                    <th column_id="user.name" class="_btn_sort" order="asc" style="width:30px;"><?php echo _("Owner"); ?></th>
+                    <th column_id="device.mac_addr" class="_btn_sort" order="asc" style="width:40px;"><?php echo _("MAC Address"); ?></th>
+                    <!--th width="100" scope="col"><?php echo _("Service ID"); ?></th-->
+                    <th column_id="device.service_type" class="_btn_sort" order="asc" style="width:25px;white-space:nowrap;"><?php echo _("Service Type"); ?></th>
+                    <th column_id="device.ip_addr" class="_btn_sort <?php echo $camera_filter_style;?>" order="asc" style="width:60px;"><?php echo _("IP Address"); ?></th>
+                    <th column_id="device.port" class="_btn_sort" order="asc" style="width:15px;"><?php echo _("Port"); ?></th>
+                    <th column_id="query_geo_locate" class="_btn_sort <?php echo $camera_filter_style;?>" order="asc" style="width:25px;white-space:nowrap;"><?php echo _("Auto Locate"); ?></th>
+                    <!--th width="100" scope="col"><?php echo _("Latitude"); ?></th>
+                    <th ><?php echo _("Longitude"); ?></th>
+                    <th ><?php echo _("Register Date"); ?></th>
+                    <th ><?php echo _("Update Date"); ?></th>
+                    <th ><?php echo _("Expire Date"); ?></th-->
+                    <!--th column_id="public_status" class="_btn_sort" order="asc" style="width:20px;"><?php echo _("Public Device"); ?></th-->
+                    <th column_id="position.seq" class="_btn_sort" order="asc" style="width:30px;white-space:nowrap;"><?php echo _("Live View"); ?></th>
+                    <!--th column_id="favorite" class="_btn_sort" order="asc" style="width:20px;"><?php echo _("My Favorite"); ?></th-->
+                    <th style="width:23px;"><?php echo _("Config"); ?></th>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="device_config_dlg" class="right_config" title="Device Config">
+            <div class="btn_sharef" style="float: left;" onClick='ApplyModifyDevice();' /><?php echo _("Apply"); ?></div>
+            <div class="btn_sharef" style="float: left;" onClick='CloseDialog();' /><?php echo _("Cancel"); ?></div>
+            <?php require("./ui_component/device_config_dialog.php"); ?>
+        </div>
+    </div>
+
+    <div id="whole_button_cover">
+		<div id="select_cover">
+			<?php echo _("Items Per Page"); ?>
+			<select id="select_limit">
+				<option selected="selected">20</option>
+				<option>50</option>
+				<option>80</option>
+			</select>
+		</div>
+        <div class="_page_button_cover">
+            <div id="_page_first" class="btn_sharef floatleft" title="<?php echo _("First Page"); ?>"><span class="btn_page_firstpage"></span></div>
+            <div id="_page_pre" class="btn_sharef floatleft" title="<?php echo _("Previous Page"); ?>"><span class="btn_page_pre"></span><?php echo _('Prev');?></div>
+            <div id="_page_next" class="btn_sharef floatleft" title="<?php echo _("Next Page"); ?>"><?php echo _('Next');?><span class="btn_page_next"></span></div>
+            <div id="_page_last" class="btn_sharef floatleft" title="<?php echo _("Last Page"); ?>"><span class="btn_page_lastpage"></span></div>
+        </div>
+        <div id="_page_button">
+            <div class="center_cover">
+                <input id="current_page" type="text" value="1" /> / <span id="_page_total">0</span>
+            </div>
+        </div>	
+    </div>
+
+</div>
+<?php
+	if ($oem_style_list['autobinding']) {
+		echo '<applet width="0" height="0" id="CameraFinder" archive="' . $oem_style_list['camera_finder_jar'] . '" code="com/qlync/CameraFinder.class" name="' . $oem_style_list['camera_finder_title'] . '"></applet>';
+	}
+?>
+<?php include_once("./include/tail.php"); ?>
+</body>
+</html>

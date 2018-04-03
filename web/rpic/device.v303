@@ -1,0 +1,165 @@
+<?php
+include_once( "./include/global.php" );
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Device List</title>
+<?php require( "./include/common_css_include.php" ); ?>
+<style type="text/css"><!-- this is to fix google map abnormal in IE7 -->
+	html { height: 100%; }
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	
+	#map_canvas {
+	  height: 100%;
+	  position: absolute;
+	  bottom:0;
+	  left:0;
+	  right:0;
+	  top:0;
+	}
+</style>
+<?php require( "./include/common_js_include.php" ); ?>
+<script type="text/javascript" src="js/panel.js"></script>
+<script type="text/javascript" src="js/device_common.js?20140331"></script>
+<script type="text/javascript" src="js/device.js"></script>
+<script type="text/javascript" src="shadowbox-3.0.3/shadowbox.js"></script>
+<script type="text/javascript" src="js/device_map.js"></script>
+<link href="shadowbox-3.0.3/shadowbox.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="css/fluster_plus.css" rel="stylesheet" type="text/css" charset="utf-8">
+<?php require( "./include/get_device_entry_from_get_parameters.php" ); ?>
+<script type="text/javascript">
+	var request_device_type = "<?php if (isset($_SESSION["request_device_type"])) echo $_SESSION["request_device_type"]; else echo "";?>";
+	var request_service_type = "<?php if (isset($_SESSION["request_service_type"])) echo $_SESSION["request_service_type"]; else echo "camera";?>";
+	var user_name = '<?php echo $_SESSION["user_name"];?>';
+
+	var initial_tab = <?php if (isset($_GET["ip_addr"])) echo $_GET["ToTab"]; else echo '0'; ?>;
+	function RefreshAfterDelete( data )
+	{
+		parent.window.location = "index.php";
+	}
+	
+	// init shadowbox for map selector
+	Shadowbox.init({
+		// let's skip the automatic setup because we don't have any
+		// properly configured link elements on the page
+		skipSetup: true
+	});	
+	
+	$(function(){
+		// setup service type options
+		SetupServiceTypeOptions();		
+		// Tabs
+		$("ul.css-tabs").tabs("div.css-tab-panel",
+			{
+				effect: "fade",
+				initialIndex: initial_tab,
+				onClick: function(event, tabIndex) {
+					//alert(tabIndex);
+					// get size to set
+					var width_to_set = $(window).width();
+					var height_to_set = $(window).height() - 50;
+	
+					// select the device entry to handle
+					var devcie_entry_to_process = device_entry_from_get_parameters;
+					if( device_entry != null ) devcie_entry_to_process = device_entry;
+					else if( device_entry == null ) device_entry = devcie_entry_to_process;
+	
+					if( tabIndex == 0 ) // view tab
+						ConfigDeviceViewTab( devcie_entry_to_process, width_to_set, height_to_set );
+					else if( tabIndex == 1 ) // locate tab
+						ConfigDeviceLocateTab( devcie_entry_to_process, width_to_set, height_to_set );
+					else if( tabIndex == 2 ) // modify tab;
+						ConfigDeviceModifyTab( devcie_entry_to_process, width_to_set, height_to_set );
+				},
+				onBeforeClick: function(event, tabIndex) {
+					if( tabIndex == 3 ) // delete tab
+					{
+						DelDevice( device_entry_from_get_parameters.id, RefreshAfterDelete );
+						return false;
+					}
+				}
+			}
+		);
+
+		// setup datetime poicket
+		SetupDatetimePicker();
+
+		// set map selector
+		SetupMapSelector();
+
+		// setup schedule selections
+		SetupSchedule();
+
+		// refresh display
+		RefreshDisplay( device_entry_from_get_parameters.id );
+		//alert($("ul.css-tabs").tabs( "option", "selected" ));
+		//alert(initial_tab);
+		//$("ul.css-tabs").click(initial_tab);
+		//alert($("ul.css-tabs").tabs( "option", "selected" ));
+		
+		// this is ActiveX Code, only work under IE, need cover by Try Catch
+		try{
+			localhost_mac = ODM_T02.OutputParameter;
+		}catch(e){}
+	});
+</script>
+</head>
+<body>
+<?php 
+	/*$remote_id = "";
+	$mac_addr = "";
+	if (isset($_GET["id"])) $remote_id = $_GET["id"];
+	if (isset($_GET["mac_addr"])) $mac_addr = $_GET["mac_addr"];
+	if($_GET['java']=="true"){
+		echo '<applet archive="cab/IPCAMTunnel.jar" code="TestJ.class" width="200" height="200">' . 
+			 '<param name="mac_addr" value="'.$mac_addr.'">'.
+			 '<param name="remote_id" value="'.$remote_id.'">'.
+			 '</applet>';
+	}
+	else{
+		echo '<object id="ODM_T02" classid="CLSID:ACC9AEB6-9456-4661-BF72-2700998ED942" Codebase="cab/ODM_T02.cab#Version=1,0,0,19" width="0" height="0"></object>';
+	}*/
+?>
+
+<!-- tabs -->
+<ul class="css-tabs">
+	<li class="off"><a href="#view_tab" id="view_tab_header"><?php echo _("View"); ?></a></li>
+	<li class="off"><a href="#locate_tab" id="locate_tab_header"><?php echo _("Locate"); ?></a></li>
+	<li id="modify_tab-li"><a href="#modify_tab" id="modify_tab_header"><?php echo _("Modify"); ?></a></li>
+	<li id="delete_tab-li"><!--a href="#" id="delete_tab_header"><?php echo _("Delete"); ?></a--></li>
+</ul>
+
+<!-- panes -->
+<div id="view_tab" class="css-tab-panel"></div><!--view_tab-->
+<div id="locate_tab" class="css-tab-panel">
+	<iframe id="locate_tab_iframe" frameborder="0" border="0" cellspacing="0"></iframe>
+</div><!--locate_tab-->
+<div id="modify_tab" class="css-tab-panel">
+	<div id="modify_tab_list" style="overflow: auto;">
+		<table>
+			<tr>
+				<td><div class="btn_sharef" onClick='ApplyModifyDevice();' /><?php echo _("Apply"); ?></div></td>
+				<td><div class="btn_sharef" onClick='ResetConfigDialog();' /><?php echo _("Reset"); ?></div></td>
+			</tr>
+		</table>
+		<?php require("./ui_component/device_config_dialog.php"); ?>
+		<table>
+			<tr>
+				<td><div class="btn_sharef" onClick='ApplyModifySchedule();' /><?php echo _("Apply"); ?></div></td>
+				<td><div class="btn_sharef" onClick='ResetScheduleDialog();' /><?php echo _("Reset"); ?></div></td>
+			</tr>
+		</table>
+		<?php require("./ui_component/schedule_config_dialog.php"); ?>
+	</div>
+</div><!--modify_tab-->
+
+
+<?php include_once("./include/tail.php"); ?>
+</body>
+</html>

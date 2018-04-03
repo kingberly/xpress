@@ -1,0 +1,193 @@
+<?php
+session_start();
+include_once( "./include/global.php" );
+include_once( "./include/index_title.php" );
+include_once( './include/login.php' );
+
+if (FORCE_HTTPS && !$_SERVER['HTTPS']) {
+  header( 'Location: https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ) ;
+  exit(0);
+}
+
+if (isset($_SESSION['user_id'])) {
+  loginProcedure($_SESSION['user_id']);
+  if (isset($_SESSION["request_device_type"]) && $_SESSION["request_device_type"] == "" &&
+    isset($_SESSION["request_service_type"]) && $_SESSION["request_service_type"] == "") {
+
+    exit(header("Location: device_list.php?mode=personal"));
+    }
+
+    if (!empty($_GET['oem-url'])) {
+    exit(header("Location: " . str_replace('.', '', $_GET['oem-url']) . "device_matrix.php?mode=personal&checkdevice=true"));
+    }
+
+    exit(header("Location: device_matrix.php?mode=personal&checkdevice=true"));
+}
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $oem_style_list['title']; ?> - Login</title>
+<?php require( "./include/common_css_include.php" ); ?>
+<?php require( "./include/common_js_include.php" ); ?>
+<link href="<?php echo $oem_style_list['css']['login']; ?>" rel="stylesheet" type="text/css" charset="utf-8">
+<script type="text/javascript" src="js/jquery.client.js"></script>
+<script defer type="text/javascript" src="js/login.js?20120827"></script>
+<script type="text/javascript" src="js/deployJava.js?20120509"></script>
+<script type="text/javascript" src="js/jQuery.XDomainRequest.js"></script>
+<!-----jinho add for captcha---->
+<script type="text/javascript" src="js/ajax_captcha.js"></script>
+<script type="text/javascript" src="js/recaptcha.js"></script>
+<!-----jinho add for captcha end---->
+<script type="text/javascript">
+function myReCaptcha(){
+    var err = "<?php echo _('Security image verify failed.');?>"; 
+    if ($('#txtCaptcha').val()=="") {
+      $('#msg').text( err);
+      return false;
+    }
+
+    // prepare parameter
+    var parameter_array = {
+      command: "recaptcha",       
+      txtCaptcha : $('input#txtCaptcha').val()
+    };
+    applyBegin();
+    $.getJSON(
+      "backstage_user_register.php",
+      parameter_array,
+      function( data )
+      {
+        if( data != null )
+        {
+          if( data.status != "success" ) {
+            $('#msg').text( data.error_msg); 
+            //Alert( data.error_msg );
+          }
+          else{
+           setTimeout("login();",500);
+          }
+        }
+        // reset recaptcha
+        setTimeout('refreshimg()', 300);
+        $('#txtCaptcha').val("");
+      });
+			//}, 'json').error(function() { $('.diagnosis-message').hide();$('#msg').text(t_js.login_MSG['0006']); });
+    applyEnd();
+
+}
+function mylogin()
+{
+	if ($('#login-btn').attr('disabled'))
+		return false;	
+  myReCaptcha();
+}
+
+  var p2p_jars = "<?php echo $oem_style_list['p2p_jars']; ?>";
+  var oem_id = "<?php echo $oem_style_list['oem_id']; ?>";
+
+  $(function(){
+    $('#name-edit').focus();
+    $('#name-edit').keyup(checkUsername);
+    $('#pwd-edit').keyup(checkPwd);
+    //jinho captcha
+    $('#txtCaptcha').keypress(function(event) {
+      if (event.keyCode == '13') {
+        $('#login-btn').click();
+      }
+    });
+    //end jinho
+    $('#pwd-edit').keypress(function(event) {
+      if (event.keyCode == '13') {
+        $('#login-btn').click();
+      }
+    });
+<?php if ((explode(".",$_SERVER['REMOTE_ADDR'])[0]=="192") and (explode(".",$_SERVER['REMOTE_ADDR'])[1]=="168") ){
+//echo "bypass if ip is local";
+  echo "    $('#login-btn').click(login);";
+}else{
+?> 
+    $('#login-btn').click(mylogin); //jinho fix
+<?php }?>
+    $('#reset-btn').click(function(){
+      $('#name-edit').val('');
+      $('#pwd-edit').val('');
+      $('#txtCaptcha').val('');//jinho
+    });
+    unlock();
+
+    $('.login_btn').hover(function(){
+      if ($(this).attr('disabled')=="disabled") return false;
+      $(this).addClass('login_btn_mover');
+    },function(){
+      $(this).removeClass('login_btn_mover');
+    });
+
+    if ($.client.browser=="Safari"){ //Safari Detect
+      //$('#name-edit').attr('disabled',true);
+      //$('#pwd-edit').attr('disabled',true);
+    }
+    if ("<?php echo $_GET['mode']; ?>" == "google")
+      $('#google-openid-btn').click();
+
+  });
+</script>
+</head>
+<body>
+<div class="H179 bg_w">
+<div class='_login_frame'>
+  <div class="_login_attr_title"><?php echo _("Username"); ?></div>
+  <input type="text" id="name-edit" class="_login_attr" maxlength="32" />
+  <div class="_login_attr_title"><?php echo _("Password"); ?></div>
+  <input type="password" id="pwd-edit" class="_login_attr" autocomplete="off" maxlength="32" />
+  <div class="_login_attr_tps"><a href="password_recovery.php"><?php echo _("Forgot your password?"); ?></a></div>
+
+<!----jinho add txtCaptcha---->
+<!---jinho add recaptcha v2---->
+<?php if ((explode(".",$_SERVER['REMOTE_ADDR'])[0]=="192") and (explode(".",$_SERVER['REMOTE_ADDR'])[1]=="168") ){
+//echo "bypass if ip is local";
+}else{
+?>
+<div style='display:block;margin: 20px auto;'>
+  <div id="recaptcha-div" class="_login_attr_title"><?php echo _("Security Image"); ?></div>
+  <input type="text" name="txtCaptcha" id="txtCaptcha" class="_login_attr" maxlength="32" />
+  <div class="_login_attr_tps">
+  <img id="imgCaptcha" src="create_image.php" style="display:inline;" />
+  <br><span onclick="setTimeout('refreshimg()', 300); return false;" style="font: 12px arial,sans-serif;color: #000000;cursor:pointer;"><?php echo _("Refresh Image"); ?></span>
+  </div>
+</div>
+<?php } ?>
+<!----jinho add end---->
+
+  <div class="login_btn" id="login-btn"><?php echo _("Login"); ?></div>
+  <?php
+    if ($oem_style_list['user_register']) {
+      echo '<a href="user_register.php"><div class="login_btn">' . _("Create Account") . "</div></a>\n";
+    }
+  ?>
+
+  <div class="login_btn" id="google-openid-btn" onclick="googlelogin();"><?php echo _("Google Login"); ?></div>
+<!---jinho add------>
+<?php   if ($oem_style_list['oem_id'] == "X02"){ ?>
+  <div class="login_btn" id="workeyemap-btn" onclick="window.open('http://workeyemap.megasys.com.tw/map/rpic_map.php?key=KZo3i6UJbKd0bb6B5Suv','WorkeyeMap','width=800,height=600,resizable=1,scrollbars=yes');"><?php echo _("Map Browse"); ?></div>
+<?php } ?>
+  <div class="login_error_msg" id="msg"></div>
+</div>
+<div class='ad_area'>
+  <div class="bg_ad_top"></div>
+    <div class="bg_ad_mid">
+      <div class="ad_content" id="ad_content">
+      </div>
+    </div>
+  <div class="bg_ad_btm"></div>
+</div>
+</div>
+<?php include_once("./include/tail.php"); ?>
+</body>
+</html>
