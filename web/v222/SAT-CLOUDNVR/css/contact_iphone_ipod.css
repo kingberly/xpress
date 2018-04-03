@@ -1,0 +1,51 @@
+#contact_info {
+    margin: 8px 0;
+}
+
+#contact_info * {
+    color: #555;
+}
+
+#contact_info > * {
+    margin: 2px 0;
+}
+
+p {
+    margin-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#contact_info dd {
+    padding-bottom: 8px;
+    font-size: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#contact_info dd * {
+    font-size: 12px;
+}
+
+#contact_info dt {
+    font-weight: bold;
+    margin-top: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+a {
+    text-decoration: underline;
+}
+
+#contact_info a:hover, #contact_info a:active {
+    color: #0099CC;
+}
+
+#contact_info h1, #contact_info h2 {
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 8px;
+    color: #0099CC;
+    font-size: 14px;
+}

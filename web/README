@@ -1,0 +1,63 @@
+cd web;cp SSL/V04/* .
+  sslpem="sentirvietnam.vn.pem" 
+  sslca="sentirvietnam.vn.ca.pem"
+sudo sh ssl-lighttpd.sh $sslpem $sslca
+------------------How APP login page query_info.php----------------------
+sudo sed -i -e '/:login access/d' /var/www/SAT-CLOUDNVR/ 
+sudo sed -i -e '/?>/i \error_log(\$_SERVER\["SCRIPT_FILENAME"].":login access");' /var/www/SAT-CLOUDNVR/query_info.php
+print_r($_GET, TRUE)
+sudo sed -i -e '/?>/i \error_log(\$_SERVER\["SCRIPT_FILENAME"].":login access");' /var/www/SAT-CLOUDNVR/backstage_mobilecam.php
+----------------------------------------------------------------------------
+Date:
+	2016/6/28
+	
+Summary:
+Package installation usage flow
+  > compatible with installer v1.3.x (Xpress4.1 SW release 2.x.x)
+    patch package name: web.tar.gz
+    default run by root account: "sh patch.sh"
+	> manually execute "sudo sh mountcheck.sh Xnn" to mount NAS per site configuration set in mountcheck.sh
+
+Script Note:
+  > patch.sh: 
+    >>param "remove": example "sudo sh patch.sh remove" => remove web installation  
+    >>Edit configuration part per site (identified by OEM ID such as T04). 
+      >>> set and place SSL file name (place ssl file under path SSL\Xxx\,
+        >>>> default top and footer logo and site ico can be placed here
+      >>> set glusterfs mount point (mount_point or mount_point_fstab)
+      >>> place iOS APNS cert files to correct installation path
+      >>> set Iveda GUI disable(default) or enable (iveda_gui_enable)
+        >>>> Iveda GUI need to sync with each release (index.php...etc)
+      >>> set smtp authenciation enable(default) or disable (smtpauth_disable)
+    >> T04 special package for bug fix, GIS API, mobile app placement
+    >> T05 special package for bug fix, GIS API, mobile app placement
+    >> run SMTP disabled if set
+    >> replace Android GCM App Key
+    >> P04 special setting for Event Email Text
+    >> Patch Java Jar video player per web release (two releases)
+      >>> Java Jar certificate renewal every year
+    >> GUI setting for each site
+      >>> Iveda GUI installed or not
+      >>> Customsized page against Iveda GUI can be applied per site
+      >>> Support.php page update for URL and App release URL
+    >> set default icon and Logo per site
+    >> check memcache (used for camera connection) status
+    >> check mount point status (but glusterfs client installation required manually execute mountcheck.sh)
+    >> set lighttpd error log recycle for 30 days
+    >> Fix web page bugs (per version)
+    >> patch robots.txt, utilize PHP fpm and TCP connection
+    >> Update SSL files, set lighttpd configuration, check lighttpd upgrade  
+  >(mountcheck.sh): mount pre-set NAS per site  
+    >> "sudo sh mountcheck.sh Xnn"
+  >(sharecamera.sh): change share camera limit, original is 5
+    >> "sudo sh sharecamera.sh <number>"
+  >(listlastfolder.sh): list last recording folder from NAS storage
+    >> "sh listlastfolder.sh"
+  >(listcount.sh): list video file count of each date folder     
+    >> "sh listcount.sh <start date 8 digits> <end date 8 digits>"
+    >> "sh listcount.sh mac <UID 18 digits>"
+    >> "sh listcount.sh all"
+  >(listsize.sh): list video file size of all existing camera per date
+    >> "sh listsize.sh <date 8 digits>"
+  >(checNAS.sh): check NAS disk usage
+    >> Detect NAS disk usage, over 80% will send email via admin postfix

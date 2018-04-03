@@ -1,0 +1,13 @@
+Index: include/license_db_function.php
+===================================================================
+--- include/license_db_function.php	(revision 3653)
++++ include/license_db_function.php	(revision 3654)
+@@ -470,7 +470,7 @@
+ 		}
+ 	}
+ 
+-	public function UpdateSeriesNumberAndGetPassword($mac_addr, $sid, $uid, $cid, $pid, $activated_code) {
++	public function UpdateSeriesNumberAndGetPassword($mac_addr, $sid, $uid, $cid, $pid, $activated_code='') {
+ 		$password = $this->GeneratePassword(8);
+ 
+ 		$params = array();
