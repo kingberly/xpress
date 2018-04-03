@@ -1,0 +1,10 @@
+/var/log/tunnel_server/tunnel_server.log.* {
+    missingok
+    notifempty
+    compress
+    weekly
+    create 0664 root root
+    minsize 1M
+    maxsize 10M
+    rotate 10
+} 

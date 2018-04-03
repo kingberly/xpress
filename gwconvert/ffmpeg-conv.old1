@@ -1,0 +1,119 @@
+ffmpegPath="./ffmpeg-3.0.1"
+workFolder="./"
+
+uploadVideo() {
+sudo -u evostreamd php gwconvert/custom-event/custom-event.php -v $1 -t $2 -m $3	
+}
+
+if [ ! -f "$ffmpegPath" ]; then
+  echo "time-lapse ffmpeg file is not existed!.\n"
+  echo "wget ftp://iveda:2wsxCFT6@ftp.tdi-megasys.com/TW/Xpress41/ffmpeg-conv.tar.gz $ffmpegPath."
+  exit
+else
+#  sudo chmod 777 $ffmpegPath
+  echo "ffmpeg is ready."
+fi
+
+videoFolder='/var/evostreamms/media'
+#if [ ! -d "$videoFolder/godwatch/" ]; then
+#  sudo -u evostreamd mkdir "$videoFolder/godwatch/"
+#  echo "create godwatch folder for time-lapse files"
+#fi
+if [ ! -z "$1" -a ! -z "$2" ]; then
+  if [ "$1" = "upload" ]; then
+    if [ ! -z "$4" ]; then
+      uploadVideo "$workFolder/$2" "${3}00" $4
+      python gwconvert/checkmac.py $4
+    else
+      echo "upload Video: sudo -u evostreamd php gwconvert/custom-event/custom-event.php -v $workFolder/$1_$2_tl.mp4 -t ${2}hhmmss -m <target mac 12 digits>\n"
+    fi 
+  elif [ "$1" = "delete" ]; then
+      if [ -z "$2" ]; then
+        echo "no mac or recording id to proceed!!"
+        exit
+      fi
+      if [ -z "$3" ]; then
+        echo "no recording id to proceed!!"
+        python gwconvert/checkmac.py $2
+        exit
+      fi
+      python gwconvert/checkmac.py $2
+      python gwconvert/checkmac.py "select" $3
+      FILEPATH=$(python gwconvert/checkmac.py "getpath" $3)
+      if [ ! -z "$FILEPATH" ]; then
+        len=${#FILEPATH}
+        COUNT=$(expr $len - 6)
+        FILEPATH=$(echo $FILEPATH | tail -c $COUNT) #trim head
+        COUNT=$(($COUNT -4))
+        FILEPATH=$(echo $FILEPATH | head -c $COUNT ) #trim tail
+        while true; do
+            read -p "Delete recording $3 ($FILEPATH) [y/n]?" yn
+            case $yn in
+                [Yy]* ) sudo rm $videoFolder/$FILEPATH;break;; #echo $FILEPATH
+                [Nn]* ) exit;;
+                * ) echo "Please answer y or n.";;
+            esac
+        done
+        python gwconvert/checkmac.py "delete" $3
+        len=${#2}
+        if [ "$len" = "12" ]; then
+          ls -al $videoFolder/Z01CC-${2}
+        else
+          ls -al $videoFolder/$2
+        fi
+      else
+        echo "File Not Exist!!"
+      fi
+  else
+  startDate=$(date)
+  if [ ! -d "$videoFolder/$1/$2" ]; then
+      echo "no such camera folder, check video files by ll -h $videoFolder/"
+      exit
+  fi
+ 
+  LIST=$(ls -l $videoFolder/$1/$2 | grep mp4 | awk '{print$9}')
+  concatList=""
+  for FILE in $LIST
+    do
+      if [ ! -z "$FILE" ]; then 
+        $ffmpegPath -i $videoFolder/$1/$2/$FILE -c copy -bsf:v h264_mp4toannexb -f mpegts $workFolder/$FILE.ts
+        concatList="$concatList|$FILE.ts"
+      fi
+    done
+    len=${#concatList}
+    #COUNT=$(expr $len - 1)
+    concatList=$(echo $concatList | tail -c $len)    #trim head
+    $ffmpegPath -i "concat:$concatList" -c copy -bsf:a aac_adtstoasc "$workFolder/$1_$2.mp4"
+    #0.017 = 60x speed, 0.02 = 50x speed
+    $ffmpegPath -i $workFolder/$1_$2.mp4 -filter:v "setpts=0.02*PTS" -c:v libx264 -an "$workFolder/$1_$2_tl.mp4"
+
+    if [ ! -z "$3" ]; then
+      uploadVideo "$workFolder/${1}_${2}_tl.mp4" "${2}010000" $3
+      python gwconvert/checkmac.py $3
+    else
+      echo "upload Video: sudo -u evostreamd php gwconvert/custom-event/custom-event.php -v $workFolder/$1_$2_tl.mp4 -t ${2}hhmmss -m <target mac 12 digits>\n"
+    fi
+    endDate=$(date)
+
+    echo "empty $workFolder by rm -rf $workFolder/*.ts"
+    rm -rf $workFolder/*.ts;
+    #while true; do
+    #    read -p "Do you want to empty ts file @$workFolder [y/n]?" yn
+    #    case $yn in
+    #        [Yy]* ) rm -rf $workFolder/*.ts; break;;
+    #        [Nn]* ) break;;
+    #        * ) echo "Please answer y or n.";;
+    #    esac
+    #done
+    #rm -rf $workFolder/${1}_${2}.mp4
+    echo "Video Convert takes: $startDate -- $endDate"
+    #echo "please change file ownership by sudo chown evostreamd. $videoFolder/<UID>/$2/"
+  fi
+else
+echo "sh ffmpeg-conv.sh <target camera uid Z01CC-001BFE04936D> <target date folder 20160316>"
+echo "sh ffmpeg-conv.sh <target camera uid Z01CC-001BFE04936D> <target date folder 20160316> <shared camera mac>\n"
+echo "sh ffmpeg-conv.sh upload <time-lapsed filename> <target upload date YYYYMMDDhhmm> <shared camera mac>"
+echo "check godwatch shared camera mac below:"
+python gwconvert/checkmac.py
+echo "delete sharevideo: sh ffmpeg-conv.sh delete <uid 18digit> <recording id>"
+fi

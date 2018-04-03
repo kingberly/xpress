@@ -1,0 +1,131 @@
+??? Add pre-upgrade script for qlync.account, qlync.right_tree
+----------2015 to 2018 --------------
+Add tables
+- isat.scid_metadata
+- qlync.reservation
+
+isat.store_product_list
+  Add Price
+
+update qlync.balance
+update qlync.menu
+update qlync.right_tree
+update qlync.scid
+REVISE qlync.oem_info (iOS banner, Public Web page)
+----------2014 to 2015 --------------
+update qlync.oem_info
+----------2014 to 2015 --------------
+Add tables
+- isat.store_product_list
+- isat.store_cash_balance
+
+qlync.account
+  Add AID
+qlync.right_tree
+  Add AID
+update qlync.menu
+update qlync.right_tree
+----------2013 to 2014 --------------
+Add pre-upgrade script for qlync.account, qlync.device_share
+----------2010 to 2013 --------------
+Add tables
+- isat.device_metadata
+- isat.file_server
+- isat.file_server_assignment
+- isat.user_metadata
+- qlync.application_info
+- qlync.balance
+- qlync.bill
+- qlync.scid
+- qlync.service_package_log
+
+isat.device_share
+  Add enabled (tinyint)
+  change Key uid to UNIQUE KEY `uid_visitor_id` (`uid`,`visitor_id`),
+
+isat.query_share
+  Add device_share enabled
+
+qlync.account
+  Password update from varchar(32) to tinyblob
+  Add ID_01 ~6,ID_09, ID_11, SCID
+  Change Engine from myISAM to InnoDB
+
+qlync.account_device, qlync.account_sales, 
+qlync.enduser_list, qlync.license,
+qlync.user_log, qlync.push_log,
+qlync.service_log, qlync.sys_log, 
+  Change from Latin1 to utf8
+
+qlync.menu, qlync.oem_info
+qlync.right_tree,
+  Change Engine from myISAM to InnoDB
+
+update qlync.account
+update qlync.menu
+update qlync.right_tree
+update qlync.oem_info
+----------2009 to 2010 --------------
+Add tables
+- qlync.push_log
+
+update qlync.menu
+update qlync.right_tree
+----------2008 to 2009 --------------
+Add tables
+- isat.inbox_message
+----------2007 to 2008 --------------
+Add tables
+- isat.regions
+- isat.tunnel_server_port_pool
+
+isat.device_reg
+  Add region (int)
+isat.stream_server
+  Add region (int)
+isat.tunnel_server
+  Add region (int)
+isat.web_server
+  Add region (int)
+
+update qlync.menu
+update qlync.right_tree
+----------2004 to 2007 --------------
+fix pre-upgrade sql
+update qlync.menu
+----------2003 to 2004 --------------
+Add 2 tables
+-isat.device_event_block_list
+-isat.device_event_info_with_block_list
+----------1501 to 2003 --------------
+qlync.menu
+  Add new (OK)
+   
+qlync.right_tree
+  Add new (OK)
+  
+qlync.oem_info
+  Add new for zh (OK)
+
+Add tables
+-isat.rtmp_server_assignment
+-isat.device_mapped
+
+isat.device_event_info
+  alter table column: 
+ `notification_type` varchar(63) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `oem_id` char(3) COLLATE utf8_unicode_ci DEFAULT NULL,
+
+(1603.sh)
+isat.tunnel_server
+  alter table column:
+    `purpose` varchar(16) NOT NULL DEFAULT 'TUNNEL',
+    UNIQUE KEY `uid` (`uid`,`purpose`),
+    
+isat.query_info
+  alter table column:
+  if((`device`.`purpose` LIKE 'RV%'),'http://',`device`.`url_prefix`) AS `url_prefix`,
+  add `device`.`internal_port` AS `internal_port`,
+  left join `tunnel_server` on((`tunnel_server`.`uid` = `tunnel_server_assignment`.`tunnel_server_uid`) and (`tunnel_server`.`purpose` = 'TUNNEL')))
+  
+isat.query_share

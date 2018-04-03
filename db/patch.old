@@ -1,0 +1,11 @@
+
+#CURRENT_VERSION=`MySql "SELECT value FROM $ISAT_DB_NAME.system_info WHERE name = 'version'" | tail -n +3`
+#installed version
+#dbver=$(cat ../isat_db/version)
+#dbverN=$(expr $dbver)
+#if [ $dbverN -gt 2001 ]; then
+#  sh 2001.sh
+  #after patched, re-install
+  #cd ../isat_db
+  #sh install.sh
+#fi

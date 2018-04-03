@@ -1,0 +1,24 @@
+CONVERT FILE
+./ffmpeg3 -loop 1 -framerate 1 -i reconnect.png -t 10 +pix_fmt reconnect.mp4
+./ffmpeg3 -loop 1 -framerate 1 -i reconnect.png -t 10 -pix_fmt yuv420p reconnect.mp4
+----------------------------------------------------------------------------
+Date:
+	2016/6/30
+	
+Summary:
+Package installation usage flow
+  > compatible with Ubuntu14.04 (Xpress4.1 vlc video files)
+    installation: "sh install.sh"
+
+Script Note:
+  > install.sh
+    >> install python, php5, php5-mysql, ffmpeg, vlc, video codec
+    >> add stream server user evostreamd
+    >> unzip latest ffmpeg-3.0.1
+    >> install database config file to /var/www/SAT-CLOUDNVR/
+  >ffmpeg-conv.sh: 
+  >ffmpeg-convcamera.sh:
+  >mountcheck.sh: mount pre-set NAS per site and make sure evostreamd is sync among all stream servers and NAS  
+    >> "sudo sh mountcheck.sh Xnn"
+    >> will update evostreamd user id and change NAS folder owner permission
+ 

@@ -1,0 +1,19 @@
+----------------------------------------------------------------------------
+Date:
+	2016/6/30
+	
+Summary:
+Package installation usage flow
+  > compatible with installer v1.3.x (Xpress4.1 SW release 2.x.x)
+    patch package name: rtmpd.tar.gz
+    default run by root account: "sh patch.sh"
+
+Script Note:
+  > patch.sh: 
+    >> param "remove": example "sudo sh patch.sh remove" => stop service and remove installed file
+    >> check nginx and fix ../isat_rtmpd/install.sh (before v0039)
+    >> Make Software Version(No RPC Support)
+    >>(checkMysql.sh) intall mysql connection checkup every 2 minutes
+      >>> once detect mysql connection error from service log, restart rtmpd service and log action to /var/tmp/rtmpdservice.log
+  > stopsrv.sh: restart rtmpd service (with nginx)
+ 

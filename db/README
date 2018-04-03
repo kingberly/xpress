@@ -1,0 +1,53 @@
+----------------------------------------------------------------------------
+Date:
+	2017/6/8
+	
+Summary:
+Package installation usage flow
+  > compatible with installer v1.3.x (Xpress4.1 SW release 2.x.x)
+    patch package name: db.tar.gz
+    default run by root account: "sh patch.sh"
+
+Script Note:
+  > patch.sh: 
+    >> param "remove": example "sudo sh patch.sh remove" => stop service and remove installed file
+    >> grant database user privileges to plugin database
+      >>> customerservice
+      >>> licservice (X02) required sql/ folder for backup sql
+      >>> godwatch (X02)
+  > install.sh: install new plugin database, read install.conf from ../isat_db  
+      >>> customerservice (P04)
+      >>> customerservice (T04, T05, X02)
+      >>> licservice (X02)
+      >>> godwatch (X02)
+  > migrateExport.sh: Export data for backup 
+    >> "sh migrateExport.sh xxx.sql"
+  > migrate.sh: Import .sql data 
+    >> "sh migrate.sh 0 0 0 0 0 0 0"
+  > dbmm.sh: Set database master-master mode for HA
+    >> "sudo sh dbmm.sh" => check master/slave state
+    >> "sudo sh dbmm.sh config" => configure master-slave account and log
+    >> "sudo sh dbmm.sh slave1 <2nd DB IP>" => set master to 2nd DB IP
+    >> "sudo sh dbmm.sh slave2 <1st DB IP>" => set master to 1st DB IP
+	> mybackup.sh: everyday export database to sql file and send to ftp site
+-----------------------PDU-/-IOT-Project-------------------------------------
+Date:
+	2015/3/08
+
+Summary:
+Shared data of User / Admin Account with Xpress4.1
+
+admin@locahost.com / qwedcxzas
+admin@iveda.com / 1qaz2wsx
+ivedatest       / 1qaz2wsx
+isat.user.oem_id = qlync.account.cid = IVD
+
+cloudnvr.sql
+=isat table
+user
+user_log
+
+qlync.sql
+=qlync table
+account
+login_log

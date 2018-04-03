@@ -1,0 +1,18 @@
+#fileVer=$(ls -Art ../03-*.tar.gz | tail -n 1 | tail -c 19 | head -c 2)
+fileVerN=$(expr $fileVer)
+if [ $fileVerN -ge 38  ]; then  #after version 0038
+  #fix new installation parameter
+  config_info=$(grep 'authentication' ../isat_stream/stream_server_control.conf)
+  if [ -z "$config_info" ]; then
+    sed -i -e '/recording_storage_path /a\authentication true' ../isat_stream/stream_server_control.conf
+    echo "Enable PUBLIC_STREAM_AUTH authentication true"
+  fi
+fi
+
+config_info=$(grep 'stream_xmlrpc_port' ../isat_stream/stream_server_control.conf)
+if [ -z "$config_info" ]; then
+  sed -i -e '/log_path/a\stream_xmlrpc_port 8087' ../isat_stream/stream_server_control.conf
+  sed -i -e '/stream_xmlrpc_port/a\vlc_command_port 8082' ../isat_stream/stream_server_control.conf
+  echo "Enable stream_xmlrpc_port for unify tunnel-stream installation"
+fi
+###end of new installation parameter

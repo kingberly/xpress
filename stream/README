@@ -1,0 +1,54 @@
+//P04 admin
+sudo cp stream/checkMysql.sh /usr/local/lib/stream_server_control/  
+----------------------------------------------------------------------------
+Date:
+	2016/6/30
+	
+Summary:
+Package installation usage flow
+  > compatible with installer v1.3.x (Xpress4.1 SW release 2.x.x)
+    patch package name: stream.tar.gz
+    default run by root account: "sh patch.sh"
+
+Script Note:
+  > patch.sh: 
+    >> param "remove": example "sudo sh patch.sh remove" => stop service and remove installed file
+    >> force install vlc-nox as qlync stream server vlc is special release and does not compatible with new vlc update
+    >> If installation script fail, Re-run installation after Un-mount NAS 
+    and remove apt-get update from script. 
+      >>> upgrade to latest ffmpeg for ubuntu 14.04
+      >>>(limitconn.sh) set Stream server limit to 250
+      >>>(checkMysql.sh) intall mysql connection checkup every 2 minutes
+        >>>> once detect mysql connection error, 
+        log action to /var/tmp/streamservice.log
+        >>>> while critical error detected from service log, 
+        restart stream service and log action to /var/tmp/streamservice.log
+        >>>> Detect Stream server local disk usage, over 80% will send email via admin postfix
+      >>>(checNAS.sh) check NAS disk usage
+        >>>> Detect NAS disk usage, over 80% will send email via admin postfix
+      >>> remove server log older than 30 days
+      >>> gzip server log every 14 days
+      >>> (remove??) cleanup video file from temp folder older than 7 days
+        >>>> manually import video file can be done by ts2mp4batch.sh 
+      >>> cleanup 0 size video file every minute and log to /var/tmp/tempdel.log
+      >>> recycle tempdel.log file every 7 days
+      >>> add dateext to logrotate for tempdel.log files
+      >>> Make Software Version
+    >> Mount NAS
+  >backupnas.sh: backup local video files and move to NAS
+    >> "sudo sh backupnas.sh"
+  >ts2mp4batch.sh: convert ts file to mp4, insert to database, move to NAS
+  >mountcheck.sh: mount pre-set NAS per site and make sure evostreamd is sync among all stream servers and NAS  
+    >> "sudo sh mountcheck.sh Xnn"
+    >> will update evostreamd user id and change NAS folder owner permission
+  >restartstr.sh: restart stream server all service
+  >limitconn.sh: set Stream server limit to 250 or less
+    >> "sudo sh limitconn.sh <number>"
+  >changeInterval.sh: change stream server recording interval, default is 60 min
+    >> "sudo sh changeInterval.sh 10"
+  > addfile.sh: sudo sh addfile.sh <UID18> all
+    >> add mp4 file to storage /var/evostreamms/media and insert media to db
+  >batchimport.sh: sh batchimport.sh <MAC 12> <date 8> <Target UID 18>
+    >> get video list and download files from dest. site per MAC per date and upload to Target UID
+  >pdlfile.sh: download file and placed in target storage  
+   

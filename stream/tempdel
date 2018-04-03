@@ -1,0 +1,10 @@
+/var/tmp/tempdel.log {
+    missingok
+    notifempty
+    compress
+    weekly
+    create 0664 evostreamd root
+    minsize 1M
+    maxsize 10M
+    rotate 10
+} 
