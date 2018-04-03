@@ -1,0 +1,57 @@
+cd admin;cp SSL/V04/* .
+  sslpem="sentirvietnam.vn.pem" 
+  sslca="sentirvietnam.vn.ca.pem"
+  sslkey="sentirvietnam.vn.key"
+sudo sh ssl-apache.sh $sslpem $sslca $sslkey
+----------------------------------------------------------------------------
+Date:
+	2016/6/30
+	
+Summary:
+Package installation usage flow
+  > compatible with installer v1.3.x (Xpress4.1 SW release 2.x.x)
+    patch package name: admin.tar.gz
+    default run by root account: "sh patch.sh"
+
+Script Note:
+  > patch.sh: 
+    >> param "remove": example "sudo sh patch.sh remove" => stop service and remove admin installed files  
+    >> Edit configuration part per site (identified by OEM ID such as T04). 
+      >>> set and place SSL file name (place ssl file under path SSL\Xxx\,
+        >>>> default top and footer logo and site ico can be placed here
+        >>>> Setting license service plugin (licservice_enable, only X02 now)
+    >>(_db_god_admin.php) set godadmin password and permission, default is qwedcxzas. (god_pwd)
+    >> Install python-paramiko for remote python status command tool
+    >>(_db_preset.php) set/update preset data into database if empty
+    >> Install Plugin tool and set to Admin Menu
+      >>> debug (engineer tool for database entry monitor)
+      >>> user_log (end user login log, mobile app login might not be included)
+      >>> billing (daily excel billing report)
+        >>>> daily crontab excel report in 3:03AM
+        >>>> recycle billing excel report in 30 days
+      >>> api (new admin api)
+        >>> manage end user account(create/delete)
+        >>> unbind camera
+        >>> delete camera license
+        >>> get camera info from billing report (or database)
+    >> recycle Apache log in 90 days    
+    >> recycle tmp log in 30 days
+    >> set default icon and Logo per site
+    >> Install Special Plugin per site
+      >>> X02 godwatch plugin (need import new database godwatch)
+      >>> P04 customer service plugin (need import new database customverservice)
+      >>> T04 Taipei service plugin (need import new database customverservice)
+      >>> T05 Taoyuan service plugin (need import new database customverservice)
+      >>> Download Document for Support.php for Iveda GUI
+        >>>> V03, Z02, V04
+    >> Patch turtorial_content.php (Camera Documentation Link)
+    >> Patch Admin web page defects
+    >> Patch service plugin (installed via installation tool)
+    >> Patch debug plugin if super user is not ivedasuper
+    >> Patch oem_id for Admin Check Tool (under admin/check/ )
+    >> fix menu_update.php and force Admin menu update from database
+    >> Utilize TCP connections(sysctl)
+    >> Update SSL files, set apache2 configuration, set apache2 https mapping port (80 or 8080)
+  > mail: install postfix to admin server to port 25/587 
+    >> mail/install.sh
+  
