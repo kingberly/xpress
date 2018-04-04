@@ -1,0 +1,84 @@
+{
+  "camerasetup": {
+    "title": "Camera Setup",
+    "faqlist": [
+      {
+        "Question": "How do I set up my new camera?",
+        "Answer": "Please refer to the section called <i>Adding Your Camera</i> within your Camera User Guide."
+      },
+      {
+        "Question": "How do I set up recording on my camera?",
+        "Answer": "Your camera is automatically configured to record 24/7 by default. To change thenumber of days to store video in the cloud, please contact your service provider. "
+      },
+      {
+        "Question": "Can I move my camera to a new location in my home or business?",
+        "Answer": "Yes, after the camera has been successfully added to IvedaXpress, you can relocate the camera to anywhere with power and Internet connectivity."
+      },
+      {
+        "Question": "What network ports does IvedaXpress use?",
+        "Answer": "https: 443, camera 50000...(pending on tunnel server), RTSP streaming 554"
+      },
+      {
+        "Question": "How do I configure wireless on my camera?",
+        "Answer": "Please refer to the section called Wireless Settings within your Camera User Guide."
+      },
+      {
+        "Question": "What is the MAC address for my camera?",
+        "Answer": "The MAC address can be found the on the back of your camera, or by going to the <strong>Settings</strong> area in IvedaXpress."
+      },
+      {
+        "Question": "Where are my camera settings?",
+        "Answer": "To access your individual camera settings click <strong>Settings --> Device</strong, then click the <strong>Modify</strong> icon for the camera you want to access"
+      }
+    ]
+  },
+  "remoteAccess": {
+    "title": "Remote Access:  Web and Mobile ",
+    "faqlist": [
+      {
+        "Question": "What mobile apps are available for IvedaXpress",
+        "Answer": "IvedaXpress for iPhone, iPad and iPod Touch <a href='https://itunes.apple.com/kg/developer/sole-vision-technologies-inc/id931740235' target='_blank'>(iOS)iTunes App Store</a><br/>IvedaXpress for Android phones and tablets <a href='https://play.google.com/store/apps/developer?id=Sole-Vision+Technologies,+Inc.' target='_blank'>Google Play</a>."
+      },
+      {
+        "Question": "How many cameras can I view at the same time?",
+        "Answer": "In IvedaXpress you can view up to (6) cameras simultaneously. "
+      },
+      {
+        "Question": "What are the system requirements to access IvedaXpress from a computer?",
+        "Answer": "CPU:Intel Atom 330 or above 1M cache 1.6GHz 533MHz FSB Operating Systems:Windows or Mac OSXScreen Resolution:1280 X 720 recommendedBrowser:Internet Explorer Firefox Chrome or SafariJava Version:Java 7u11 or aboveFor more information on IvedaXpress System Requirements see section System Specifications in your product user guide."
+      }
+    ]
+  },
+  "CameraService": {
+    "title": "Camera and Service Information",
+    "faqlist": [
+      {
+        "Question": "How much bandwidth does IvedaXpress require?",
+        "Answer": "Each IvedaXpress camera uses about 0.2 Mbps of upload bandwidth depending on video resolution. Please keep in mind other devices on your network will use the same upload bandwidth."
+      },
+      {
+        "Question": "How do I change my registered email address?",
+        "Answer": "Currently you cannot update your email address <Thinking of deleting this one>Yes, can not, only create new account."
+      },
+      {
+        "Question": "Can I use my camera outside of the United States?",
+        "Answer": "Yes, you camera will work anywhere with a connection to the Internet after its been added to your account."
+      },
+      {
+        "Question": "Can I share access to my camera or recorded video?",
+        "Answer": "Yes, you can share access to live and recorded video from your cameras with other registered IvedaXpress users. If they are not registered, the end user can register for a new account at <a href='http://xpress.megasys.com.tw' target='_blank'>http://xpress.megasys.com.tw</a> and click 'Create Account'<div class='list'><p>To share a camera with a registered user:</p>Go to <strong>Settings</strong><br />Click the <strong>Share</strong> button for the camera<br />Under Share to, enter the IvedaXpress user name of the other end user<br />Click <strong>Share</strong><p>When the other end user logs into IvedaXpress, they will click the <strong>Share</strong> button from the homepage to see the camera. They will only have access to live and recorded video for that camera.</p></div>"
+      }
+
+    ]
+  },
+  "Troubleshooting": {
+    "title": "Troubleshooting",
+    "faqlist": [
+      {
+        "Question": "My WIFI settings changed, how do I change it on the camera?",
+        "Answer": "You will need to plug the camera with an Ethernet cord into your local wireless router. Then power down/power up the camera. Then you can access the camera from <a href='http://xpress.megasys.com.tw' target='_blank'>xpress.megasys.com.tw</a> where you can make the wireless configuration changes"
+      }
+ 
+    ]
+  }
+}

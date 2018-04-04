@@ -1,0 +1,46 @@
+test under xpress.megasys.com.tw:8080/
+/plugin/js/
+/plugin/rpic*
+
+workeyemap.megasys.com.tw/
+/map/js
+/map/rpic*
+
+echo "*/5 * * * *   root  /usr/bin/php5 \"/var/www/qlync_admin/plugin/rpic/rpic_file.php\" N99" >> /etc/crontab  
+sed -i -e '$a\*/5 * * * * root  /usr/bin/php5  "/var/www/qlync_admin/plugin/rpic/rpic_file.php" N99' /etc/crontab
+
+----------------------------------------------------------------------------
+Date:
+	2017/7/31
+	
+Summary:
+RPIC map integration with Xpress GIS database mgmt
+Script Note:
+  > rpic_getdblist.php
+  > rpic.inc 
+    >> php function group sections
+  > rpic_file.php
+  	>> get each site GIS info and save to /var/tmp regularly 
+  > rpic_getList.php
+  	>> Merged GIS info json page, protected by pre-coded account/password
+  > rpic_map.php
+  >> (API Key required) display Google Map from cache files/GIS URL @ /var/tmp
+
+----------------------------------------------------------------------------
+Date:
+	2017/5/3
+	
+Summary:
+RPIC map integration
+
+Script Note:
+  > rpic.inc 
+    >> php function group sections
+  > rpic_file.php
+  	>> get each site GIS info and save to /var/tmp regularly 
+  > rpic_getList.php
+  	>> Merged GIS info json page, protected by pre-coded account/password
+  > rpic_gis.php
+  	>> (API Key required) display Google Map from each GIS info URL
+  > rpic_map.php
+  >> (API Key required) display Google Map from cache files @ /var/tmp

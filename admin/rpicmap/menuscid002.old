@@ -1,0 +1,83 @@
+<?PHP
+###
+#menu cannot differ SCID $_SESSION["SCID"], limit SCID 002 access to
+#LEVEL 0 Account Mgr.
+#LEVEL 0 Camera Lease Mgmt.
+#######################################################################
+        echo "<div class=\"menu\">\n";
+        echo "<ul>\n";
+
+foreach($menu1 as $key0=>$value0){
+  foreach($auth as $key_auth=>$value_auth){
+    if(in_array($value_auth,$value0["fright"]) and ($_SESSION["{$value_auth}_qlync"]==1 or $_SESSION["RID"][substr($value_auth,3,2)]==1) or $value0["valid"])
+    {
+    	if ($_SESSION["SCID"] != "002") //jinho added SCID002
+      	echo "<li class=\"project\">"._($value0["name"])."";
+      else{ //jinho added filter
+    	if (($value0['name'] == "Account Mgr.") or ($value0['name']=="Camera Lease Mgmt."))
+    			echo "<li class=\"project\">"._($value0["name"])."";
+    	else $db_menu["FID"] = 0;
+    }//jinho added filter end
+      break;
+    }
+  }
+                echo "<div class=\"submenu\">\n";
+                        echo "<ul>\n";
+
+  foreach($value0 as $key1 => $value1){
+    if($key1 <> "name" and $key1 <> "fright" and $key1 <> "valid")
+    {
+            foreach($auth as $value_auth){
+                    if(in_array($value_auth,$value1["fright"]) and ($_SESSION["{$value_auth}_qlync"]==1 or $_SESSION["RID"][substr($value_auth,3,2)]==1) or $value1["valid"])
+                    {
+           echo "<li><a href=\"{$value1["link"]}\">".gettext($value1["name"])."</a></li>\n";
+                            //echo $value1["name"];
+                            break;
+                    }
+
+            } 
+
+    }
+  }
+  echo "</ul>";
+      echo "</div>\n";
+    echo "</li>\n";
+
+}
+
+//echo "</div>\n";
+// index
+echo "<BR><BR>";
+//  echo "<font face=arial color=$999999> >> ";
+  $uri=explode("?",mysql_real_escape_string($_SERVER["REQUEST_URI"]));
+  $sql="select ID,Level,Name,FID from qlync.menu where Link='{$uri[0]}'";
+  sql($sql,$result_menu,$num_menu,0);
+  fetch($db_menu,$result_menu,0,0);
+  if($num_menu >0 and $_SESSION["ID_qlync"] <> "")
+  {
+  if($db_menu["Level"] =="0")
+  {
+  	//if ($_SESSION["SCID"] != "002") //jinho added SCID002
+    	echo "<a><font face=arial color=#999999>{$db_menu["Name"]}</a>\n";
+    /*else{ //jinho added filter
+    	if (($db_menu['Name'] == "Account Mgr.") or ($db_menu['Name']=="Camera Lease Mgmt."))
+    			echo "<a><font face=arial color=#999999>{$db_menu["Name"]}</a>\n";
+    	else $db_menu["FID"] = 0;
+    }//jinho added filter end
+		*/
+  }
+  else
+  {
+    $sql="select ID,Name from qlync.menu where ID='{$db_menu["FID"]}'";
+    sql($sql,$result_menu0,$num_menu0,0);
+    fetch($db_menu0,$result_menu0,0,0);
+    echo "<a><font size=2 face=arial color=#999999>".gettext($db_menu0["Name"])."</a>\n";
+    echo ">>\n";
+    echo "<a><font face=arial color=#0094F2>".gettext($db_menu["Name"])."</a>\n";
+  }
+  }
+
+echo "<div class=\"bg_top mgtop22\"></div>\n";
+
+
+        
